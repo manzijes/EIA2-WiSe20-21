@@ -1,0 +1,12 @@
+body{
+    background-color: salmon;
+}
+
+#text{
+    text-align: center;
+    font-size: 20pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: aliceblue;
+    margin-top: 20%;
+}
