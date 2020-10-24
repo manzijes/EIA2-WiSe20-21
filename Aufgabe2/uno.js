@@ -81,7 +81,7 @@ var MiniUno;
             playerHand.removeChild(chosenCard);
             setTimeout(() => {
                 evaluateWinner();
-            }, 1000);
+            }, 800);
             pcTurn = true;
             handlePcTurn();
         }

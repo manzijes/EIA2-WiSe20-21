@@ -83,13 +83,13 @@ function drawCard(_event: MouseEvent): void {
 
 function chooseCard(_event: MouseEvent): void {
     let chosenCard: HTMLSpanElement = <HTMLSpanElement>_event.target;
-    if (chosenCard.textContent === currentCard.textContent || chosenCard.className === currentCard.className){
+    if (chosenCard.textContent === currentCard.textContent || chosenCard.className === currentCard.className) {
         currentCard.textContent = chosenCard.textContent;
         currentCard.className = chosenCard.className;
         playerHand.removeChild(chosenCard);
         setTimeout(() => {
             evaluateWinner();
-            },     1000);
+            },     800);
         pcTurn = true;
         handlePcTurn();
     }
