@@ -14,7 +14,7 @@ let pcTurn: boolean = false;
 let passAllowed: boolean = false;
 let pcNoMatch: boolean = false;
 
-let userPrompt: string | null = prompt("How many cards do you want to start the game with? Rec: 10", "");
+let userPrompt: string | null = prompt("How many cards do you want to start the game with? Rec: 7-11", "");
 let cardsNumber: number = parseInt(<string>userPrompt);
 
 //Generate the starting cards of player

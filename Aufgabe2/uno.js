@@ -14,7 +14,7 @@ var MiniUno;
     let pcTurn = false;
     let passAllowed = false;
     let pcNoMatch = false;
-    let userPrompt = prompt("How many cards do you want to start the game with? Rec: 10", "");
+    let userPrompt = prompt("How many cards do you want to start the game with? Rec: 7-11", "");
     let cardsNumber = parseInt(userPrompt);
     //Generate the starting cards of player
     generatePlayerCards();
