@@ -71,7 +71,6 @@ h1{
     top: 11%;
     color: whitesmoke;
     left: 20px;
-    border: thin solid lightslategrey;
 }
 
 #playerHand > span{
@@ -125,7 +124,6 @@ h1{
 
 .yellow {
     background-color: rgb(226, 226, 90);
-    border: 1px solid rgb(226, 226, 90);
 }
 
 .green {
