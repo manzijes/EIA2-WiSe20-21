@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap" rel="stylesheet">
+    <script src="hexenkessel.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="hexenkessel.css">
+    <title>L03 Hexenkessel Formular</title>
+</head>
+<body>
+    <header>
+        <h1>Online-Zaubertrank-Editor</h1>
+        <p>Stelle hier Schritt für Schritt dein Zaubertrankrezept zusammen. Kombiniere beliebig Anweisungen.</p>
+    </header>
+    <div id="container">
+    
+    <form>
+    <div id="form">
+        <h2>Entwurf</h2>
+        <fieldset>
+            <legend>Name des Tranks</legend>
+            <input type="text" name="Trankname" id="potionName">
+        </fieldset>
+
+        <fieldset>
+            <legend>Beschreibung, Risiken und Nebenwirkungen</legend>
+            <textarea name="Trankbeschreibung" id="description" cols="45" rows="2"></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Wirkung</legend>
+            <select name="Trankwirkung" id="effect">
+                <option value="Unbekannt">Unbekannt</option>
+                <option value="Liebestrank">Liebestrank</option>
+                <option value="Heiltrank">Heiltrank</option>
+                <option value="Glückstrank">Glückstrank</option>
+                <option value="Stärkungstrank">Stärkungstrank</option>
+                <option value="Verwandlungstrank">Verwandlungstrank</option>
+                <option value="Beruhigungstrank">Beruhigungstrank</option>
+                <option value="Schlaftrank">Schlaftrank</option>
+                <option value="Wahrheitstrank">Wahrheitstrank</option>
+                <option value="Sonstiges">Sonstiges</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Dauer der Wirkung</legend>
+            Minuten:
+            <input type="number" name="Dauer der Wirkung" min="1" max="43200" step="1" id="minuten" value="1">
+        </fieldset>
+
+        <fieldset>
+            <legend>Zutaten</legend>
+            <ul>
+                <li>
+                    <!-- <legend>Wähle hier alle benötigten Ingredienzen und deren Menge:</legend>  -->
+                    <label for="spinnenbeine">
+                    <input type="checkbox" name="Zutat" value="Spinnenbeine" id="spinnenbeine"> Spinnenbeine
+                    </label>
+                    <input type="number" name="Spinnen Menge" min="1" max="100" step="1" id="mengeSpinnen" value="1"> Stück
+                </li>
+
+                <li>
+                    <label for="krötenaugen">
+                    <input type="checkbox" name="Zutat" value="Krötenaugen" id="krötenaugen"> Krötenaugen
+                    </label>
+                    <input type="number" name="Kröten Menge" min="1" max="100" step="1" id="mengeKröten" value="1"> Stück
+                </li>
+
+                <li>
+                    <label for="glibberwürmer">
+                    <input type="checkbox" name="Zutat" value="Glibberwürmer" id="glibberwürmer"> Glibberwürmer
+                    </label>
+                    <input type="number" name="Würmer Menge" min="1" max="100" step="1" id="mengeWürmer" value="1"> Stück
+                </li>
+                
+                <li>
+                    <label for="schlangenschuppen">
+                    <input type="checkbox" name="Zutat" value="Schlangenschuppen" id="schlangenschuppen"> Schlangenschuppen
+                    </label>
+                    <input type="number" name="Schlangen Menge" min="1" max="100" step="1" id="mengeSchuppen" value="1"> Stück
+                </li>
+
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <legend>Temperatur</legend>
+                    <label for="heat">
+                    <input type="radio" name="Temperaturanweisung" id="heat" value="Trank erhitzen">erhitzen
+                    </label>
+                    <label for="cool">
+                    <input type="radio" name="Temperaturanweisung" id="cool" value="Trank abkühlen">abkühlen
+                    </label>
+                    <label for="temperatur">auf folgende Temperatur:
+                    <input type="number" name="Grad" min="-20" max="100" step="0.1" id="temperatur">°C
+                    </label>
+            <p class="hint">Bis diese Bedinungen zutreffen:</p>
+            Dauer (in Minuten): <input type="number" name="Dauer" min="0" max="60" step="0.5" id="dauer1">
+            Konsistenz: <select name="TemperaturKonsistenz" id="konsistenz1">
+                        <option value="zähflüssig">zähflüssig</option>
+                        <option value="dickflüssig">dickflüssig</option>
+                        <option value="schleimig">schleimig</option>
+                        </select>
+            Farbe: <input type="color" name="TemperaturFarbe" id="color1">
+        </fieldset>
+
+        <fieldset>
+            <legend>Rührintensität</legend>
+            0<input type="range" name="Rührintensität" id="rühren" min="0" max="5" step="1" value="0">5
+            <p class="hint">Bis diese Bedinungen zutreffen:</p>
+            Dauer (in Minuten): <input type="number" name="Rührdauer" min="0" max="60" step="0.5" id="dauer2">
+            Konsistenz: <select name="RührenKonsistenz" id="konsistenz2">
+                        <option value="zähflüssig">zähflüssig</option>
+                        <option value="dickflüssig">dickflüssig</option>
+                        <option value="schleimig">schleimig</option>
+                        </select>
+            Farbe: <input type="color" name="RührenFarbe" id="color2">
+        </fieldset>
+</div>
+</form>
+
+<div id="recipe">
+    <h2>Rezept</h2>
+    <div id="result"></div>
+</div>
+
+</div>
+</body>
+</html>
