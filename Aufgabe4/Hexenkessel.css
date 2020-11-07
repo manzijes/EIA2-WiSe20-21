@@ -1,0 +1,117 @@
+body {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 10pt;
+	display: grid;
+	grid-template-columns: 28% auto;
+	grid-template-rows: auto auto;
+	background-color: rgb(34, 32, 32);
+}
+
+header {
+	grid-column: span 3;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	color: whitesmoke;
+}
+
+button {
+	background-color: rgb(46, 41, 41);
+	color: whitesmoke;
+	margin: 10px;
+	border-radius: 8px;
+}
+
+#form2{
+	width: fit-content;
+}
+
+#output{
+	width: 29em;
+}
+
+div {
+	border: thin solid black;
+	margin: 1em;
+	background-color: whitesmoke;
+	border-radius: 4px;
+}
+
+
+h1{
+	font-family: 'Petit Formal Script', cursive;
+	font-size: 16pt;
+	margin-bottom: -5px;
+}
+
+h2 {
+	margin-left: 1em;
+	font-size: 12pt;
+	font-family: 'Petit Formal Script', cursive;
+}
+
+progress {
+	margin-left: 10px;
+	text-align: right;
+	height:3em;
+	width: 3em;
+}
+
+.slider {
+	width: fit-content;
+	border: hidden;
+	display: grid;
+	grid-template-columns: auto auto;
+}
+
+input[type=number]{
+	height: 12.8px;
+	width: 40px;
+}
+
+input[type=radio]{
+	margin-top: 10px;
+}
+
+textarea{
+	width: 100%;
+}
+
+#groupStyle{
+	border: hidden;
+	margin: 0;
+}
+
+input[type=color]{
+	height: 17px;
+}
+
+input[type=range]{
+	margin-top: 10px;
+}
+
+.inside{
+	border: hidden;
+	display: inline;
+}
+
+#outputInstructions{
+	border: hidden;
+}
+
+#outputGeneral{
+	border: hidden;
+	margin-left: 1.5em;
+}
+
+p:not(header){
+	margin-left: 1em;
+}
+
+#form1>fieldset{
+	margin-bottom: 10px;
+}
+
+#totalSpan{
+	text-align: center;
+}
