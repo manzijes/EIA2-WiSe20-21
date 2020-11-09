@@ -147,20 +147,20 @@ function convertCurrency(_total) {
     let knut;
     let sickel;
     let galleonen;
-    if (_total < 29) {
-        adjustedPrice = _total.toFixed(0) + " Knut";
+    let remainder;
+    galleonen = (Math.floor(_total / 493)).toString();
+    remainder = _total % 493;
+    sickel = (Math.floor(remainder / 29)).toString();
+    remainder = remainder % 29;
+    knut = remainder.toString();
+    if (galleonen != "0") {
+        adjustedPrice = galleonen + " Galleonen, " + sickel + " Sickel und " + knut + " Knut";
     }
-    if (_total < 493) {
-        sickel = (_total / 29).toFixed(0);
-        knut = (_total % 29).toFixed(0);
+    else if (sickel != "0") {
         adjustedPrice = sickel + " Sickel und " + knut + " Knut";
     }
-    if (_total > 493) {
-        galleonen = (_total / 493).toFixed(0);
-        _total %= 493;
-        sickel = (_total / 29).toFixed(0);
-        knut = (_total % 29).toFixed(0);
-        adjustedPrice = galleonen + " Galleonen, " + sickel + " Sickel und " + knut + " Knut";
+    else {
+        adjustedPrice = knut + " Knut";
     }
     return adjustedPrice;
 }
