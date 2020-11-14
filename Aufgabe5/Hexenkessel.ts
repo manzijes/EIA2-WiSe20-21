@@ -27,17 +27,28 @@ namespace L05_Hexenkessel_Client {
 
         let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("input#duration");
         let slider2: HTMLInputElement = <HTMLInputElement>document.querySelector("input#intensity");
+    
+        slider.addEventListener("input", displayDuration);
+        slider2.addEventListener("input", displayIntensity);  
 
         btnGeneral.addEventListener("click", displayGeneral);
-
         btnIngredients.addEventListener("click", displayIngredients);
         btnTemperature.addEventListener("click", displayTemperature);
         btnStir.addEventListener("click", displayStir);
-
         btnDelete.addEventListener("click", askBeforeDelete);
-        
-        slider.addEventListener("input", displayDuration);
-        slider2.addEventListener("input", displayIntensity);  
+    }
+
+    function displayDuration(_event: Event): void {
+        console.log("hallo");
+        let progress: HTMLProgressElement = <HTMLProgressElement>document.querySelector("#durationSlider");
+        let duration: string = (<HTMLInputElement>_event.target).value;
+        progress.value = parseFloat(duration);
+    }
+
+    function displayIntensity(_event: Event): void {
+        let progress: HTMLProgressElement = <HTMLProgressElement>document.querySelector("#intensitySlider");
+        let intensity: string = (<HTMLInputElement>_event.target).value;
+        progress.value = parseFloat(intensity);
     }
 
     async function sendRecipe(): Promise<void> {
@@ -252,20 +263,6 @@ namespace L05_Hexenkessel_Client {
         }
         outputInstructions.innerHTML += "<br>";
     }
-
-
-    function displayDuration(_event: Event): void {
-        let progress: HTMLProgressElement = <HTMLProgressElement>document.querySelector("#durationSlider");
-        let duration: string = (<HTMLInputElement>_event.target).value;
-        progress.value = parseFloat(duration);
-    }
-
-    function displayIntensity(_event: Event): void {
-        let progress: HTMLProgressElement = <HTMLProgressElement>document.querySelector("#intensitySlider");
-        let intensity: string = (<HTMLInputElement>_event.target).value;
-        progress.value = parseFloat(intensity);
-    }
-
 
     function convertCurrency(_total: number): string {
         let adjustedPrice: string = "";

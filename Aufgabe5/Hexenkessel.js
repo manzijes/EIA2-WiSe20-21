@@ -23,13 +23,24 @@ var L05_Hexenkessel_Client;
         let btnDelete = document.querySelector("#delete");
         let slider = document.querySelector("input#duration");
         let slider2 = document.querySelector("input#intensity");
+        slider.addEventListener("input", displayDuration);
+        slider2.addEventListener("input", displayIntensity);
         btnGeneral.addEventListener("click", displayGeneral);
         btnIngredients.addEventListener("click", displayIngredients);
         btnTemperature.addEventListener("click", displayTemperature);
         btnStir.addEventListener("click", displayStir);
         btnDelete.addEventListener("click", askBeforeDelete);
-        slider.addEventListener("input", displayDuration);
-        slider2.addEventListener("input", displayIntensity);
+    }
+    function displayDuration(_event) {
+        console.log("hallo");
+        let progress = document.querySelector("#durationSlider");
+        let duration = _event.target.value;
+        progress.value = parseFloat(duration);
+    }
+    function displayIntensity(_event) {
+        let progress = document.querySelector("#intensitySlider");
+        let intensity = _event.target.value;
+        progress.value = parseFloat(intensity);
     }
     async function sendRecipe() {
         let outputGeneral = document.querySelector("div#outputGeneral");
@@ -203,16 +214,6 @@ var L05_Hexenkessel_Client;
             }
         }
         outputInstructions.innerHTML += "<br>";
-    }
-    function displayDuration(_event) {
-        let progress = document.querySelector("#durationSlider");
-        let duration = _event.target.value;
-        progress.value = parseFloat(duration);
-    }
-    function displayIntensity(_event) {
-        let progress = document.querySelector("#intensitySlider");
-        let intensity = _event.target.value;
-        progress.value = parseFloat(intensity);
     }
     function convertCurrency(_total) {
         let adjustedPrice = "";
