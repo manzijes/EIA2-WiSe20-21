@@ -1,7 +1,7 @@
 "use strict";
-var L04_Hexenkessel_DataStructure;
-(function (L04_Hexenkessel_DataStructure) {
-    L04_Hexenkessel_DataStructure.data = {
+var L04_Hexenkessel;
+(function (L04_Hexenkessel) {
+    L04_Hexenkessel.data = {
         // Wirkung: [
         //     { name: "Unbekannt", price: 0.00 },
         //     { name: "Heiltrank", price: 0.00 },
@@ -16,5 +16,5 @@ var L04_Hexenkessel_DataStructure;
             { name: "Schlangenschuppen", price: 75 }
         ]
     };
-})(L04_Hexenkessel_DataStructure || (L04_Hexenkessel_DataStructure = {}));
+})(L04_Hexenkessel || (L04_Hexenkessel = {}));
 //# sourceMappingURL=Data.js.map

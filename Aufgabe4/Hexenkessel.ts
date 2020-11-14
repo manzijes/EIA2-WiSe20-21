@@ -1,4 +1,4 @@
-namespace L04_Hexenkessel_DataStructure {
+namespace L04_Hexenkessel {
     window.addEventListener("load", handleLoad);
     let total: number = 0;
 
@@ -17,6 +17,7 @@ namespace L04_Hexenkessel_DataStructure {
         btnIngredients.addEventListener("click", displayIngredients);
         btnTemperature.addEventListener("click", displayTemperature);
         btnStir.addEventListener("click", displayStir);
+
         slider.addEventListener("input", displayDuration);
         slider2.addEventListener("input", displayIntensity);
         
@@ -182,32 +183,33 @@ namespace L04_Hexenkessel_DataStructure {
         let intensity: string = (<HTMLInputElement>_event.target).value;
         progress.value = parseFloat(intensity);
     }
-}
 
-function convertCurrency(_total: number): string {
-    let adjustedPrice: string = "";
-    let knut: string;
-    let sickel: string;
-    let galleonen: string;
-    let remainder: number;
 
-    galleonen = (Math.floor(_total / 493)).toString();
-    remainder = _total % 493;
-    sickel = (Math.floor(remainder / 29)).toString();
-    remainder = remainder % 29;
-    knut = remainder.toString();
+    function convertCurrency(_total: number): string {
+        let adjustedPrice: string = "";
+        let knut: string;
+        let sickel: string;
+        let galleonen: string;
+        let remainder: number;
 
-    if (galleonen != "0") {
-        adjustedPrice = galleonen + " Galleonen, " + sickel + " Sickel und " + knut + " Knut";
+        galleonen = (Math.floor(_total / 493)).toString();
+        remainder = _total % 493;
+        sickel = (Math.floor(remainder / 29)).toString();
+        remainder = remainder % 29;
+        knut = remainder.toString();
+
+        if (galleonen != "0") {
+            adjustedPrice = galleonen + " Galleonen, " + sickel + " Sickel und " + knut + " Knut";
+        }
+
+        else if (sickel != "0") {
+            adjustedPrice = sickel + " Sickel und " + knut + " Knut";
+        }
+
+        else {
+            adjustedPrice = knut + " Knut";
+        }
+
+        return adjustedPrice;
     }
-
-    else if (sickel != "0") {
-        adjustedPrice = sickel + " Sickel und " + knut + " Knut";
-    }
-
-    else {
-        adjustedPrice = knut + " Knut";
-    }
-
-    return adjustedPrice;
 }

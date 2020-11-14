@@ -1,6 +1,6 @@
 "use strict";
-var L04_Hexenkessel;
-(function (L04_Hexenkessel) {
+var L05_Hexenkessel_Client;
+(function (L05_Hexenkessel_Client) {
     function generateContent(_data) {
         for (let category in _data) {
             // console.log(category);
@@ -21,7 +21,7 @@ var L04_Hexenkessel;
                 fieldset.appendChild(group);
         }
     }
-    L04_Hexenkessel.generateContent = generateContent;
+    L05_Hexenkessel_Client.generateContent = generateContent;
     // function createSelect(_items: Item[], _category: string): HTMLElement | null {
     //     let group: HTMLSpanElement = document.createElement("span");
     //     group.id = "groupStyle";
@@ -66,5 +66,5 @@ var L04_Hexenkessel;
         }
         return group;
     }
-})(L04_Hexenkessel || (L04_Hexenkessel = {}));
+})(L05_Hexenkessel_Client || (L05_Hexenkessel_Client = {}));
 //# sourceMappingURL=GenerateContent.js.map
