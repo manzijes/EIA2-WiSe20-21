@@ -6,7 +6,7 @@ namespace L05_Hexenkessel_Client {
 
     async function handleLoad(_event: Event): Promise<void> {
 
-        let response: Response = await fetch("data.JSON");
+        let response: Response = await fetch("data.json");
         let item: string = await response.text();
         let data: Data = JSON.parse(item);
 
