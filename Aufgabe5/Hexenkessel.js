@@ -7,8 +7,8 @@ var L05_Hexenkessel_Client;
     let formDataSendGeneral = new FormData();
     async function handleLoad(_event) {
         let response = await fetch("data.JSON");
-        let allIngredients = await response.text();
-        let data = JSON.parse(allIngredients);
+        let item = await response.text();
+        let data = JSON.parse(item);
         L05_Hexenkessel_Client.generateContent(data);
         let send = document.querySelector("#btnSend");
         send.addEventListener("click", sendRecipe);
