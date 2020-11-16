@@ -10,10 +10,10 @@ namespace L05_Hexenkessel_Client {
         let allIngredients: string = await response.text();
         let data: Data = JSON.parse(allIngredients);
 
+        generateContent(data);
+
         let send: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnSend");
         send.addEventListener("click", sendRecipe);
-
-        generateContent(data);
 
         let btnGeneral: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnGeneral");
         let btnIngredients: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnIngredients");
