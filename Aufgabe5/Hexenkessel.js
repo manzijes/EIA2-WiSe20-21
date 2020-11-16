@@ -3,16 +3,12 @@ var L05_Hexenkessel_Client;
 (function (L05_Hexenkessel_Client) {
     window.addEventListener("load", handleLoad);
     let total = 0;
-    // let formGeneral: HTMLFormElement;
-    // let formInstructions: HTMLFormElement;
     let formDataSendInstructions = new FormData();
     let formDataSendGeneral = new FormData();
     async function handleLoad(_event) {
         let response = await fetch("data.JSON");
         let allIngredients = await response.text();
         let data = JSON.parse(allIngredients);
-        // formGeneral = <HTMLFormElement>document.querySelector("#formGeneral");
-        // formInstructions = <HTMLFormElement>document.querySelector("#formInstructions");
         let send = document.querySelector("#btnSend");
         send.addEventListener("click", sendRecipe);
         L05_Hexenkessel_Client.generateContent(data);
@@ -50,10 +46,6 @@ var L05_Hexenkessel_Client;
         }
         else {
             console.log("Send Recipe");
-            // let formDataGeneral: FormData = new FormData(formGeneral);
-            // let formDataInstructions: FormData = new FormData(formInstructions);
-            // let queryGeneral: URLSearchParams = new URLSearchParams(<any>formDataGeneral);
-            // let queryInstructions: URLSearchParams = new URLSearchParams(<any>formDataInstructions);
             let querySendGeneral = new URLSearchParams(formDataSendGeneral);
             let querySendInstructions = new URLSearchParams(formDataSendInstructions);
             await fetch("index.html?" + querySendGeneral.toString());

@@ -1,8 +1,6 @@
 namespace L05_Hexenkessel_Client {
     window.addEventListener("load", handleLoad);
     let total: number = 0;
-    // let formGeneral: HTMLFormElement;
-    // let formInstructions: HTMLFormElement;
     let formDataSendInstructions: FormData = new FormData();
     let formDataSendGeneral: FormData = new FormData();
 
@@ -11,8 +9,6 @@ namespace L05_Hexenkessel_Client {
         let response: Response = await fetch("data.JSON");
         let allIngredients: string = await response.text();
         let data: Data = JSON.parse(allIngredients);
-        // formGeneral = <HTMLFormElement>document.querySelector("#formGeneral");
-        // formInstructions = <HTMLFormElement>document.querySelector("#formInstructions");
 
         let send: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnSend");
         send.addEventListener("click", sendRecipe);
@@ -59,10 +55,6 @@ namespace L05_Hexenkessel_Client {
             alert("Professor Snape wird sich nicht freuen, wenn du eine leere Seite abgibst...");
         } else {
             console.log("Send Recipe");
-            // let formDataGeneral: FormData = new FormData(formGeneral);
-            // let formDataInstructions: FormData = new FormData(formInstructions);
-            // let queryGeneral: URLSearchParams = new URLSearchParams(<any>formDataGeneral);
-            // let queryInstructions: URLSearchParams = new URLSearchParams(<any>formDataInstructions);
             let querySendGeneral: URLSearchParams = new URLSearchParams(<any>formDataSendGeneral);
             let querySendInstructions: URLSearchParams = new URLSearchParams(<any>formDataSendInstructions);
             await fetch("index.html?" + querySendGeneral.toString());
