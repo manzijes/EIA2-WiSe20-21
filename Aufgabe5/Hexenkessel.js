@@ -8,7 +8,7 @@ var L05_Hexenkessel_Client;
     let formDataSendInstructions = new FormData();
     let formDataSendGeneral = new FormData();
     async function handleLoad(_event) {
-        let response = await fetch("Data.json");
+        let response = await fetch("data.JSON");
         let allIngredients = await response.text();
         let data = JSON.parse(allIngredients);
         // formGeneral = <HTMLFormElement>document.querySelector("#formGeneral");
