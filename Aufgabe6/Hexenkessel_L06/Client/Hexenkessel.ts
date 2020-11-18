@@ -3,7 +3,8 @@ namespace L06_Hexenkessel_Server {
     let total: number = 0;
     let formDataSendInstructions: FormData = new FormData();
     let formDataSendGeneral: FormData = new FormData();
-    let url: string = "http://localhost:5001";
+    // let url: string = "http://localhost:5001";
+    let url: string = "https://potion-editor.herokuapp.com/";
 
     async function handleLoad(_event: Event): Promise<void> {
 

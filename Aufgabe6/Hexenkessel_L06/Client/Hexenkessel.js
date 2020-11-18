@@ -5,7 +5,8 @@ var L06_Hexenkessel_Server;
     let total = 0;
     let formDataSendInstructions = new FormData();
     let formDataSendGeneral = new FormData();
-    let url = "http://localhost:5001";
+    // let url: string = "http://localhost:5001";
+    let url = "https://potion-editor.herokuapp.com/";
     async function handleLoad(_event) {
         let response = await fetch("newData.json");
         let item = await response.text();
