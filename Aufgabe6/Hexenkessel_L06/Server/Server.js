@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.L06_L06_Hexenkessel_Server = void 0;
+exports.L06_Hexenkessel_Server = void 0;
 const Http = require("http");
 const Url = require("url");
-var L06_L06_Hexenkessel_Server;
-(function (L06_L06_Hexenkessel_Server) {
+var L06_Hexenkessel_Server;
+(function (L06_Hexenkessel_Server) {
     let server = Http.createServer();
     let port = process.env.PORT;
     if (port == undefined)
@@ -26,5 +26,5 @@ var L06_L06_Hexenkessel_Server;
         }
         _response.end();
     }
-})(L06_L06_Hexenkessel_Server = exports.L06_L06_Hexenkessel_Server || (exports.L06_L06_Hexenkessel_Server = {}));
+})(L06_Hexenkessel_Server = exports.L06_Hexenkessel_Server || (exports.L06_Hexenkessel_Server = {}));
 //# sourceMappingURL=Server.js.map

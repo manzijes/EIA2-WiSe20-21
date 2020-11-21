@@ -1,7 +1,7 @@
 import * as Http from "http";
 import * as Url from "url";
 
-export namespace L06_L06_Hexenkessel_Server {
+export namespace L06_Hexenkessel_Server {
     let server: Http.Server = Http.createServer();
 
     let port: number | string | undefined = process.env.PORT;
