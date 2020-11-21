@@ -1,6 +1,6 @@
 "use strict";
-var L06_Hexenkessel_Server;
-(function (L06_Hexenkessel_Server) {
+var L06_Hexenkessel_Server_Kopie;
+(function (L06_Hexenkessel_Server_Kopie) {
     window.addEventListener("load", handleLoad);
     let total = 0;
     let formDataSendInstructions = new FormData();
@@ -12,7 +12,7 @@ var L06_Hexenkessel_Server;
         let response = await fetch("newData.json");
         let item = await response.text();
         let data = JSON.parse(item);
-        L06_Hexenkessel_Server.generateContent(data);
+        L06_Hexenkessel_Server_Kopie.generateContent(data);
         let send = document.querySelector("#btnSend");
         send.addEventListener("click", sendRecipe);
         let btnGeneral = document.querySelector("#btnGeneral");
@@ -245,5 +245,5 @@ var L06_Hexenkessel_Server;
         }
         return adjustedPrice;
     }
-})(L06_Hexenkessel_Server || (L06_Hexenkessel_Server = {}));
+})(L06_Hexenkessel_Server_Kopie || (L06_Hexenkessel_Server_Kopie = {}));
 //# sourceMappingURL=Hexenkessel.js.map

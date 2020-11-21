@@ -1,0 +1,20 @@
+{
+    "Zutaten": [
+        { 
+            "name": "Spinnenbeine", 
+            "price": 50 
+        },
+        { 
+            "name": "Krötenaugen", 
+            "price": 40 
+        },
+        { 
+            "name": "Glibberwürmer", 
+            "price": 20 
+        },
+        { 
+            "name": "Schlangenschuppen", 
+            "price": 75 
+        }
+    ]
+}

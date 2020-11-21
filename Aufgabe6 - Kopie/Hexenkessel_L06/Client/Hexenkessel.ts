@@ -1,85 +1,105 @@
-"use strict";
-var L06_Hexenkessel_Server;
-(function (L06_Hexenkessel_Server) {
+namespace L06_Hexenkessel_Server_Kopie {
     window.addEventListener("load", handleLoad);
-    let total = 0;
-    let formDataSendInstructions = new FormData();
-    let formDataSendGeneral = new FormData();
-    let x = 1;
+    let total: number = 0;
+    let formDataSendInstructions: FormData = new FormData();
+    let formDataSendGeneral: FormData = new FormData();
+    let x: number = 1;
     // let url: string = "http://localhost:5001";
-    let url = "https://potion-editor.herokuapp.com/";
-    async function handleLoad(_event) {
-        let response = await fetch("newData.json");
-        let item = await response.text();
-        let data = JSON.parse(item);
-        L06_Hexenkessel_Server.generateContent(data);
-        let send = document.querySelector("#btnSend");
+    let url: string = "https://potion-editor.herokuapp.com/";
+
+    async function handleLoad(_event: Event): Promise<void> {
+
+        let response: Response = await fetch("newData.json");
+        let item: string = await response.text();
+        let data: Data = JSON.parse(item);
+
+        generateContent(data);
+
+        let send: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnSend");
         send.addEventListener("click", sendRecipe);
-        let btnGeneral = document.querySelector("#btnGeneral");
-        let btnIngredients = document.querySelector("#btnIngredients");
-        let btnTemperature = document.querySelector("#btnTemperature");
-        let btnStir = document.querySelector("#btnStir");
-        let btnDelete = document.querySelector("#delete");
-        let slider = document.querySelector("input#duration");
-        let slider2 = document.querySelector("input#intensity");
+
+        let btnGeneral: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnGeneral");
+        let btnIngredients: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnIngredients");
+        let btnTemperature: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnTemperature");
+        let btnStir: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnStir");
+        let btnDelete: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#delete");
+
+        let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("input#duration");
+        let slider2: HTMLInputElement = <HTMLInputElement>document.querySelector("input#intensity");
+    
         slider.addEventListener("input", displayDuration);
-        slider2.addEventListener("input", displayIntensity);
+        slider2.addEventListener("input", displayIntensity);  
+
         btnGeneral.addEventListener("click", displayGeneral);
         btnIngredients.addEventListener("click", displayIngredients);
         btnTemperature.addEventListener("click", displayTemperature);
         btnStir.addEventListener("click", displayStir);
         btnDelete.addEventListener("click", askBeforeDelete);
     }
-    function displayDuration(_event) {
+
+    function displayDuration(_event: Event): void {
         console.log("hallo");
-        let progress = document.querySelector("#durationSlider");
-        let duration = _event.target.value;
+        let progress: HTMLProgressElement = <HTMLProgressElement>document.querySelector("#durationSlider");
+        let duration: string = (<HTMLInputElement>_event.target).value;
         progress.value = parseFloat(duration);
     }
-    function displayIntensity(_event) {
-        let progress = document.querySelector("#intensitySlider");
-        let intensity = _event.target.value;
+
+    function displayIntensity(_event: Event): void {
+        let progress: HTMLProgressElement = <HTMLProgressElement>document.querySelector("#intensitySlider");
+        let intensity: string = (<HTMLInputElement>_event.target).value;
         progress.value = parseFloat(intensity);
     }
-    async function sendRecipe() {
+
+    async function sendRecipe(): Promise<void> {
         // let outputGeneral: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputGeneral");
         // let outputInstructions: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputInstructions");
+        
         // if (outputGeneral.innerHTML && outputInstructions.innerHTML == "") {
         //     alert("Professor Snape wird sich nicht freuen, wenn du eine leere Seite abgibst...");
         // } else {
-        let querySendGeneral = new URLSearchParams(formDataSendGeneral);
-        let querySendInstructions = new URLSearchParams(formDataSendInstructions);
-        let responseGeneral = await fetch(url + "?" + querySendGeneral.toString());
-        let responseInstructions = await fetch(url + "?" + querySendInstructions.toString());
-        let responseGeneralText = await responseGeneral.text();
-        let responseInstructionsText = await responseInstructions.text();
+        let querySendGeneral: URLSearchParams = new URLSearchParams(<any>formDataSendGeneral);
+        let querySendInstructions: URLSearchParams = new URLSearchParams(<any>formDataSendInstructions);
+        let responseGeneral: Response = await fetch(url + "?" + querySendGeneral.toString());
+        let responseInstructions: Response = await fetch(url + "?" + querySendInstructions.toString());
+        let responseGeneralText: string = await responseGeneral.text();
+        let responseInstructionsText: string = await responseInstructions.text();
         alert(responseGeneralText + responseInstructionsText);
-        //When recipe has been sent by user, delete all contents of output and all keys, values of formDataSends
-        // deleteAll();
+
+            //When recipe has been sent by user, delete all contents of output and all keys, values of formDataSends
+            // deleteAll();
+        
     }
-    function askBeforeDelete() {
-        let outputGeneral = document.querySelector("div#outputGeneral");
-        let outputInstructions = document.querySelector("div#outputInstructions");
+
+    function askBeforeDelete(): void {
+        let outputGeneral: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputGeneral");
+        let outputInstructions: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputInstructions");
         if (outputGeneral.innerHTML && outputInstructions.innerHTML != "" && confirm("Bist du sicher, dass du alles löschen möchtest?")) {
             deleteAll();
         }
     }
-    function deleteAll() {
-        let outputGeneral = document.querySelector("div#outputGeneral");
-        let outputInstructions = document.querySelector("div#outputInstructions");
-        let totalSpan = document.querySelector("#totalSpan");
+
+    function deleteAll(): void {
+        let outputGeneral: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputGeneral");
+        let outputInstructions: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputInstructions");
+        let totalSpan: HTMLSpanElement = <HTMLSpanElement>document.querySelector("#totalSpan");
         outputGeneral.innerHTML = "...";
         outputInstructions.innerHTML = "";
         totalSpan.innerHTML = "";
+
         formDataSendGeneral = new FormData();
         formDataSendInstructions = new FormData();
     }
-    function displayGeneral() {
-        let effect = false;
-        let outputGeneral = document.querySelector("div#outputGeneral");
+
+    function displayGeneral(): void {
+        
+        let effect: boolean = false;
+        let outputGeneral: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputGeneral");
         outputGeneral.innerHTML = "";
-        let formDataGeneral = new FormData(document.querySelector("#formGeneral"));
+
+        let formDataGeneral: FormData = new FormData(<HTMLFormElement>document.querySelector("#formGeneral"));
+
         for (let entry of formDataGeneral) {
+
             switch (entry[0]) {
                 case "Name":
                     if (entry[1] != "") {
@@ -88,6 +108,7 @@ var L06_Hexenkessel_Server;
                         formDataSendGeneral.append(entry[0], entry[1]);
                     }
                     break;
+
                 case "Beschreibung":
                     if (entry[1] != "") {
                         outputGeneral.innerHTML += "Beschreibung: " + entry[1] + "<br>";
@@ -95,6 +116,7 @@ var L06_Hexenkessel_Server;
                         formDataSendGeneral.append(entry[0], entry[1]);
                     }
                     break;
+
                 case "Trankwirkung":
                     if (entry[1] != "Unbekannt") {
                         outputGeneral.innerHTML += entry[0] + ": " + entry[1] + "<br>";
@@ -103,6 +125,7 @@ var L06_Hexenkessel_Server;
                         formDataSendGeneral.append(entry[0], entry[1]);
                     }
                     break;
+                
                 case "Wirkungsdauer (Minuten)":
                     if (entry[1] != "0" && effect) {
                         outputGeneral.innerHTML += "Wirkungsdauer: " + entry[1] + " Minute(n)" + "<br>";
@@ -110,38 +133,52 @@ var L06_Hexenkessel_Server;
                         formDataSendGeneral.append(entry[0], entry[1]);
                     }
                     break;
+                    
                 default:
+                }  
             }
         }
-    }
-    function displayIngredients() {
-        let outputInstructions = document.querySelector("div#outputInstructions");
-        let totalSpan = document.querySelector("#totalSpan");
-        let formDataInstructions = new FormData(document.querySelector("#formInstructions"));
+
+    function displayIngredients(): void {
+
+        let outputInstructions: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputInstructions");
+        let totalSpan: HTMLSpanElement = <HTMLSpanElement>document.querySelector("#totalSpan");
+        let formDataInstructions: FormData = new FormData(<HTMLFormElement>document.querySelector("#formInstructions"));
+
         for (let entry of formDataInstructions) {
+
             if (entry[0] == "Zutaten") {
-                let selector = "[value='" + entry[1] + "']";
-                let item = document.querySelector(selector);
-                let associatedAmount = entry[1] + " Menge";
-                let amount = Number(formDataInstructions.get(associatedAmount));
-                let itemprice = Number(item.getAttribute("price"));
+                let selector: string = "[value='" + entry[1] + "']";
+                let item: HTMLInputElement = <HTMLInputElement>document.querySelector(selector);
+
+                let associatedAmount: string = entry[1] + " Menge";
+                let amount: number = Number(formDataInstructions.get(associatedAmount));
+
+                let itemprice: number = Number(item.getAttribute("price"));
                 total += amount * itemprice;
+
                 outputInstructions.innerHTML += amount + " " + entry[1] + " hinzugeben." + "<br>";
+
                 formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
                 formDataSendInstructions.append(associatedAmount, amount.toString());
                 x++;
             }
         }
         outputInstructions.innerHTML += "<br>";
-        let adjustedPrice = convertCurrency(total);
+        let adjustedPrice: string = convertCurrency(total);
         totalSpan.innerHTML = "<p><strong>Preis: " + adjustedPrice;
     }
-    function displayStir() {
-        let outputInstructions = document.querySelector("div#outputInstructions");
-        let intensity = false;
-        let formDataInstructions = new FormData(document.querySelector("#formInstructions"));
+
+    function displayStir(): void {
+
+        let outputInstructions: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputInstructions");
+        let intensity: boolean = false;
+        let formDataInstructions: FormData = new FormData(<HTMLFormElement>document.querySelector("#formInstructions"));
+
         for (let entry of formDataInstructions) {
+
             switch (entry[0]) {
+
                 case "Rühren mit Intensität":
                     if (entry[1] != "0") {
                         outputInstructions.innerHTML += "Rühren mit einer Intensität von " + entry[1] + "/10." + "<br>";
@@ -150,37 +187,45 @@ var L06_Hexenkessel_Server;
                         x++;
                     }
                     break;
+
                 case "Rühren bis Dauer (Minuten)":
-                    if (entry[1] != "0" && intensity) {
+                    if (entry[1] != "0" && intensity){
                         outputInstructions.innerHTML += "➔ Rühren bis " + entry[1] + " Minute(n) vergangen sind." + "<br>";
                         formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
                         x++;
                     }
                     break;
+
                 case "Rühren bis Farbe":
-                    if (entry[1] != "keine Angabe" && intensity) {
+                    if (entry[1] != "keine Angabe" && intensity){
                         outputInstructions.innerHTML += "➔ Rühren bis die Trankfarbe " + entry[1] + " ist." + "<br>";
                         formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
                         x++;
                     }
                     break;
+
                 case "Rühren bis Konsistenz":
-                    if (entry[1] != "keine Angabe" && intensity) {
+                    if (entry[1] != "keine Angabe" && intensity){
                         outputInstructions.innerHTML += "➔ Rühren bis die Konsistenz " + entry[1] + " ist." + "<br>";
                         formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
                         x++;
                     }
                     break;
+
                 default:
             }
         }
         outputInstructions.innerHTML += "<br>";
     }
-    function displayTemperature() {
-        let outputInstructions = document.querySelector("div#outputInstructions");
-        let temperature = false;
-        let formDataInstructions = new FormData(document.querySelector("#formInstructions"));
+
+    function displayTemperature(): void {
+
+        let outputInstructions: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputInstructions");
+        let temperature: boolean = false;
+        let formDataInstructions: FormData = new FormData(<HTMLFormElement>document.querySelector("#formInstructions"));
+
         for (let entry of formDataInstructions) {
+
             switch (entry[0]) {
                 case "Temperaturanweisung":
                     if (entry[1] != "") {
@@ -190,6 +235,7 @@ var L06_Hexenkessel_Server;
                         x++;
                     }
                     break;
+
                 case "Gradzahl (Celsius)":
                     if (entry[1] != "" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis " + entry[1] + " °C erreicht sind." + "<br>";
@@ -197,6 +243,7 @@ var L06_Hexenkessel_Server;
                         x++;
                     }
                     break;
+
                 case "Erhitzen/Abkühlen bis Dauer (Minuten)":
                     if (entry[1] != "0" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis " + entry[1] + " Minute(n) vergangen sind." + "<br>";
@@ -204,6 +251,7 @@ var L06_Hexenkessel_Server;
                         x++;
                     }
                     break;
+
                 case "Erhitzen/Abkühlen bis Farbe":
                     if (entry[1] != "keine Angabe" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis die Trankfarbe " + entry[1] + " ist." + "<br>";
@@ -211,6 +259,7 @@ var L06_Hexenkessel_Server;
                         x++;
                     }
                     break;
+
                 case "Erhitzen/Abkühlen bis Konsistenz":
                     if (entry[1] != "keine Angabe" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis die Konsistenz " + entry[1] + " ist." + "<br>";
@@ -218,32 +267,38 @@ var L06_Hexenkessel_Server;
                         x++;
                     }
                     break;
+
                 default:
             }
         }
         outputInstructions.innerHTML += "<br>";
     }
-    function convertCurrency(_total) {
-        let adjustedPrice = "";
-        let knut;
-        let sickel;
-        let galleonen;
-        let remainder;
+
+    function convertCurrency(_total: number): string {
+        let adjustedPrice: string = "";
+        let knut: string;
+        let sickel: string;
+        let galleonen: string;
+        let remainder: number;
+
         galleonen = (Math.floor(_total / 493)).toString();
         remainder = _total % 493;
         sickel = (Math.floor(remainder / 29)).toString();
         remainder = remainder % 29;
         knut = remainder.toString();
+
         if (galleonen != "0") {
             adjustedPrice = galleonen + " Galleonen, " + sickel + " Sickel und " + knut + " Knut";
         }
+
         else if (sickel != "0") {
             adjustedPrice = sickel + " Sickel und " + knut + " Knut";
         }
+
         else {
             adjustedPrice = knut + " Knut";
         }
+
         return adjustedPrice;
     }
-})(L06_Hexenkessel_Server || (L06_Hexenkessel_Server = {}));
-//# sourceMappingURL=Hexenkessel.js.map
+}

@@ -3,6 +3,7 @@ namespace L06_Hexenkessel_Server {
     let total: number = 0;
     let formDataSendInstructions: FormData = new FormData();
     let formDataSendGeneral: FormData = new FormData();
+    let x: number = 1;
     // let url: string = "http://localhost:5001";
     let url: string = "https://potion-editor.herokuapp.com/";
 
@@ -158,8 +159,9 @@ namespace L06_Hexenkessel_Server {
 
                 outputInstructions.innerHTML += amount + " " + entry[1] + " hinzugeben." + "<br>";
 
-                formDataSendInstructions.append(entry[0], entry[1]);
+                formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
                 formDataSendInstructions.append(associatedAmount, amount.toString());
+                x++;
             }
         }
         outputInstructions.innerHTML += "<br>";
@@ -181,28 +183,32 @@ namespace L06_Hexenkessel_Server {
                     if (entry[1] != "0") {
                         outputInstructions.innerHTML += "Rühren mit einer Intensität von " + entry[1] + "/10." + "<br>";
                         intensity = true;
-                        formDataSendInstructions.append(entry[0], entry[1]);
+                        formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
+                        x++;
                     }
                     break;
 
                 case "Rühren bis Dauer (Minuten)":
                     if (entry[1] != "0" && intensity){
                         outputInstructions.innerHTML += "➔ Rühren bis " + entry[1] + " Minute(n) vergangen sind." + "<br>";
-                        formDataSendInstructions.append(entry[0], entry[1]);
+                        formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
+                        x++;
                     }
                     break;
 
                 case "Rühren bis Farbe":
                     if (entry[1] != "keine Angabe" && intensity){
                         outputInstructions.innerHTML += "➔ Rühren bis die Trankfarbe " + entry[1] + " ist." + "<br>";
-                        formDataSendInstructions.append(entry[0], entry[1]);
+                        formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
+                        x++;
                     }
                     break;
 
                 case "Rühren bis Konsistenz":
                     if (entry[1] != "keine Angabe" && intensity){
                         outputInstructions.innerHTML += "➔ Rühren bis die Konsistenz " + entry[1] + " ist." + "<br>";
-                        formDataSendInstructions.append(entry[0], entry[1]);
+                        formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
+                        x++;
                     }
                     break;
 
@@ -225,35 +231,40 @@ namespace L06_Hexenkessel_Server {
                     if (entry[1] != "") {
                         outputInstructions.innerHTML += "Zaubertrank " + entry[1] + "." + "<br>";
                         temperature = true;
-                        formDataSendInstructions.append(entry[0], entry[1]);
+                        formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
+                        x++;
                     }
                     break;
 
                 case "Gradzahl (Celsius)":
                     if (entry[1] != "" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis " + entry[1] + " °C erreicht sind." + "<br>";
-                        formDataSendInstructions.append(entry[0], entry[1]);
+                        formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
+                        x++;
                     }
                     break;
 
                 case "Erhitzen/Abkühlen bis Dauer (Minuten)":
                     if (entry[1] != "0" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis " + entry[1] + " Minute(n) vergangen sind." + "<br>";
-                        formDataSendInstructions.append(entry[0], entry[1]);
+                        formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
+                        x++;
                     }
                     break;
 
                 case "Erhitzen/Abkühlen bis Farbe":
                     if (entry[1] != "keine Angabe" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis die Trankfarbe " + entry[1] + " ist." + "<br>";
-                        formDataSendInstructions.append(entry[0], entry[1]);
+                        formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
+                        x++;
                     }
                     break;
 
                 case "Erhitzen/Abkühlen bis Konsistenz":
                     if (entry[1] != "keine Angabe" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis die Konsistenz " + entry[1] + " ist." + "<br>";
-                        formDataSendInstructions.append(entry[0], entry[1]);
+                        formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
+                        x++;
                     }
                     break;
 
