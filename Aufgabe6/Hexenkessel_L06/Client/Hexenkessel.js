@@ -73,6 +73,7 @@ var L06_Hexenkessel_Server;
         totalSpan.innerHTML = "";
         formDataSendGeneral = new FormData();
         formDataSendInstructions = new FormData();
+        x = 1;
     }
     function displayGeneral() {
         let effect = false;

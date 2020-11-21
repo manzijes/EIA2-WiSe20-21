@@ -88,6 +88,7 @@ namespace L06_Hexenkessel_Server {
 
         formDataSendGeneral = new FormData();
         formDataSendInstructions = new FormData();
+        x = 1;
     }
 
     function displayGeneral(): void {
