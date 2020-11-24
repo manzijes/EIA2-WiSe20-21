@@ -1,0 +1,166 @@
+body {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 10pt;
+	display: grid;
+	grid-template-columns: 30% auto;
+	grid-template-rows: auto auto;
+	background-color: rgb(34, 32, 32);
+}
+
+header {
+	grid-column: span 3;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	color: whitesmoke;
+}
+
+/* #form2{
+	width: fit-content;
+} */
+
+#output{
+	width: 26em;
+}
+
+div {
+	border: thin solid black;
+	margin: 1em;
+	background-color: whitesmoke;
+	border-radius: 4px;
+}
+
+
+h1{
+	font-family: 'Petit Formal Script', cursive;
+	font-size: 16pt;
+	margin-bottom: -5px;
+}
+
+h2 {
+	margin-left: 1em;
+	font-size: 12pt;
+	font-family: 'Petit Formal Script', cursive;
+}
+
+progress {
+	margin-left: 10px;
+	text-align: right;
+	height:3em;
+	width: 3em;
+}
+
+.slider {
+	width: fit-content;
+	border: hidden;
+	display: grid;
+	grid-template-columns: auto auto;
+}
+
+input[type=number]{
+	height: 12.8px;
+	width: 40px;
+}
+
+input[type=radio]{
+	margin-top: 10px;
+}
+
+textarea{
+	width: 100%;
+}
+
+#groupStyle{
+	border: hidden;
+	margin: 0;
+}
+
+input[type=range]{
+	margin-top: 10px;
+}
+
+.inside{
+	border: hidden;
+	display: inline;
+}
+
+#outputInstructions{
+	border: hidden;
+}
+
+#outputGeneral{
+	border: hidden;
+	margin-left: 1.5em;
+}
+
+p:not(header){
+	margin-left: 1em;
+}
+
+#form1>fieldset{
+	margin-bottom: 10px;
+}
+
+/* the following animation was made by @kocsten https://codepen.io/kocsten */
+
+.allBtns {
+	background-color: rgb(46, 41, 41);
+	color: whitesmoke;
+	margin: 10px;
+
+	border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 5px;
+}
+
+.allBtns:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.allBtns:active {
+    color: #000
+}
+
+.allBtns:active:after {
+    background: transparent;
+}
+
+.allBtns:hover:before {
+    opacity: 1;
+}
+
+.allBtns:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}

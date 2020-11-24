@@ -52,3 +52,16 @@ node_modules/@types/node/ts3.4/globals.global.d.ts
 node_modules/@types/node/ts3.4/index.d.ts
 node_modules/@types/node/ts3.6/base.d.ts
 node_modules/@types/node/ts3.6/index.d.ts
+L07_MongoDB/LICENSE-Community.txt
+L07_MongoDB/MPL-2
+L07_MongoDB/README
+L07_MongoDB/THIRD-PARTY-NOTICES
+L07_MongoDB/bin/Install-Compass.ps1
+L07_MongoDB/bin/mongo.exe
+L07_MongoDB/bin/mongo.pdb
+L07_MongoDB/bin/mongod.exe
+L07_MongoDB/bin/mongod.pdb
+L07_MongoDB/bin/mongos.exe
+L07_MongoDB/bin/mongos.pdb
+L07_Database
+node_modules
