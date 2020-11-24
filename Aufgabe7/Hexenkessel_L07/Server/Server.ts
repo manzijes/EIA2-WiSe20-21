@@ -16,7 +16,7 @@ export namespace L07_Hexenkessel_Database {
 
     // let databaseUrl: string = "mongodb://localhost:27017";
     // "mongodb+srv://testuser:<password>@eia2.tkzjq.mongodb.net/<dbname>?retryWrites=true&w=majority"
-    let databaseUrl: string = "<testuser>:<passwort12345>@eia2.tkzjq.mongodb.net/<Hexenkessel>?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://testuser:<passwort12345>@eia2.tkzjq.mongodb.net/<Hexenkessel>?retryWrites=true&w=majority";
 
     startServer(port);
     connectToDatabase(databaseUrl);
