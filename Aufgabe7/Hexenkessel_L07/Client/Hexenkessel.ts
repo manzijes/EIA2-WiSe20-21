@@ -40,7 +40,6 @@ namespace L07_Hexenkessel_Database {
     }
 
     function displayDuration(_event: Event): void {
-        console.log("hallo");
         let progress: HTMLProgressElement = <HTMLProgressElement>document.querySelector("#durationSlider");
         let duration: string = (<HTMLInputElement>_event.target).value;
         progress.value = parseFloat(duration);
@@ -69,6 +68,7 @@ namespace L07_Hexenkessel_Database {
         // alert(responseGeneralText + responseInstructionsText);
 
         let recipeContent: string = outputInstructions.innerHTML;
+        recipeContent.replace("<br>", " ");
         formDataSend.append("Rezept", recipeContent);
 
         let query: URLSearchParams = new URLSearchParams(<any>formDataSend);

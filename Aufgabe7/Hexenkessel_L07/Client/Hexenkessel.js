@@ -33,7 +33,6 @@ var L07_Hexenkessel_Database;
         btnDelete.addEventListener("click", askBeforeDelete);
     }
     function displayDuration(_event) {
-        console.log("hallo");
         let progress = document.querySelector("#durationSlider");
         let duration = _event.target.value;
         progress.value = parseFloat(duration);
@@ -57,6 +56,7 @@ var L07_Hexenkessel_Database;
         // let responseInstructionsText: string = await responseInstructions.text();
         // alert(responseGeneralText + responseInstructionsText);
         let recipeContent = outputInstructions.innerHTML;
+        recipeContent.replace("<br>", " ");
         formDataSend.append("Rezept", recipeContent);
         let query = new URLSearchParams(formDataSend);
         let response = await fetch(url + "?" + query.toString());
