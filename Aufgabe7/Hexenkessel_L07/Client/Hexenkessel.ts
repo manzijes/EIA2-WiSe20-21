@@ -5,8 +5,8 @@ namespace L07_Hexenkessel_Database {
     // let formDataSendGeneral: FormData = new FormData();
     let formDataSend: FormData = new FormData();
     // let x: number = 1;
-    let url: string = "http://localhost:5001";
-    // let url: string = "https://potion-editor.herokuapp.com/";
+    // let url: string = "http://localhost:5001";
+    let url: string = "https://potion-editor.herokuapp.com/";
 
     async function handleLoad(_event: Event): Promise<void> {
 
