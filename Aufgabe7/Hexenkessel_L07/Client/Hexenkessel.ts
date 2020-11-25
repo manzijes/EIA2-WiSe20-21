@@ -5,9 +5,8 @@ namespace L07_Hexenkessel_Database {
     // let formDataSendGeneral: FormData = new FormData();
     let formDataSend: FormData = new FormData();
     // let x: number = 1;
-    // let url: string = "http://localhost:5001";
-    let url: string = "https://potion-editor.herokuapp.com/";
-    //new;
+    let url: string = "http://localhost:5001";
+    // let url: string = "https://potion-editor.herokuapp.com/";
 
     async function handleLoad(_event: Event): Promise<void> {
 
@@ -203,7 +202,7 @@ namespace L07_Hexenkessel_Database {
                     break;
 
                 case "Rühren bis Dauer (Minuten)":
-                    if (entry[1] != "0" && intensity){
+                    if (entry[1] != "0" && intensity) {
                         outputInstructions.innerHTML += "➔ Rühren bis " + entry[1] + " Minute(n) vergangen sind." + "<br>";
                         // formDataSend.append(x + ". " + entry[0], entry[1]);
                         // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
@@ -212,7 +211,7 @@ namespace L07_Hexenkessel_Database {
                     break;
 
                 case "Rühren bis Farbe":
-                    if (entry[1] != "keine Angabe" && intensity){
+                    if (entry[1] != "keine Angabe" && intensity) {
                         outputInstructions.innerHTML += "➔ Rühren bis die Trankfarbe " + entry[1] + " ist." + "<br>";
                         // formDataSend.append(x + ". " + entry[0], entry[1]);
                         // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
@@ -221,7 +220,7 @@ namespace L07_Hexenkessel_Database {
                     break;
 
                 case "Rühren bis Konsistenz":
-                    if (entry[1] != "keine Angabe" && intensity){
+                    if (entry[1] != "keine Angabe" && intensity) {
                         outputInstructions.innerHTML += "➔ Rühren bis die Konsistenz " + entry[1] + " ist." + "<br>";
                         // formDataSend.append(x + ". " + entry[0], entry[1]);
                         // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
