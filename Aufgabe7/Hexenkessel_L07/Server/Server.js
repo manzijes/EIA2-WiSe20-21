@@ -12,7 +12,7 @@ var L07_Hexenkessel_Database;
         port = 5001;
     // let databaseUrl: string = "mongodb://localhost:27017";
     // "mongodb+srv://testuser:<password>@eia2.tkzjq.mongodb.net/<dbname>?retryWrites=true&w=majority"
-    let databaseUrl = "mongodb+srv://testuser:<passwort12345>@eia2.tkzjq.mongodb.net/<Hexenkessel>?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://testuser:passwort12345@eia2.tkzjq.mongodb.net/Hexenkessel?retryWrites=true&w=majority";
     startServer(port);
     connectToDatabase(databaseUrl);
     function startServer(_port) {
