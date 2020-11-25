@@ -7,6 +7,7 @@ namespace L07_Hexenkessel_Database {
     // let x: number = 1;
     // let url: string = "http://localhost:5001";
     let url: string = "https://potion-editor.herokuapp.com/";
+    //new;
 
     async function handleLoad(_event: Event): Promise<void> {
 

@@ -9,6 +9,7 @@ var L07_Hexenkessel_Database;
     // let x: number = 1;
     // let url: string = "http://localhost:5001";
     let url = "https://potion-editor.herokuapp.com/";
+    //new;
     async function handleLoad(_event) {
         let response = await fetch("newData.json");
         let item = await response.text();
