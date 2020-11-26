@@ -70,7 +70,6 @@ namespace L07_Hexenkessel_Database {
         let recipeContent: string = outputInstructions.innerHTML;
         recipeContent.replace("<br>", " ");
         formDataSend.append("Rezept", recipeContent);
-
         let query: URLSearchParams = new URLSearchParams(<any>formDataSend);
         let response: Response = await fetch(url + "?" + query.toString());
         let responseText: string = await response.text();
