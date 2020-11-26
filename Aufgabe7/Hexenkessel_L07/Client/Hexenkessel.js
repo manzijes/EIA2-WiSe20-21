@@ -5,8 +5,8 @@ var L07_Hexenkessel_Database;
     let total = 0;
     // let formDataSendInstructions: FormData = new FormData();
     // let formDataSendGeneral: FormData = new FormData();
-    let formDataSend = new FormData();
     // let x: number = 1;
+    let formDataSend = new FormData();
     // let url: string = "http://localhost:5001";
     let url = "https://potion-editor.herokuapp.com/";
     async function handleLoad(_event) {

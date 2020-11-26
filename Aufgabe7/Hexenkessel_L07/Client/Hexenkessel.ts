@@ -3,8 +3,9 @@ namespace L07_Hexenkessel_Database {
     let total: number = 0;
     // let formDataSendInstructions: FormData = new FormData();
     // let formDataSendGeneral: FormData = new FormData();
-    let formDataSend: FormData = new FormData();
     // let x: number = 1;
+    
+    let formDataSend: FormData = new FormData();
     // let url: string = "http://localhost:5001";
     let url: string = "https://potion-editor.herokuapp.com/";
 

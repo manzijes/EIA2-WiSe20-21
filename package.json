@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node Aufgabe6/Hexenkessel_L06/Server/Server.js"
+    "start": "node Aufgabe6/Hexenkessel_L06/Server/Server.js remote"
   },
   "repository": {
     "type": "git",
