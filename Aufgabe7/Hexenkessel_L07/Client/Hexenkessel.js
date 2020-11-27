@@ -3,9 +3,6 @@ var L07_Hexenkessel_Database;
 (function (L07_Hexenkessel_Database) {
     window.addEventListener("load", handleLoad);
     let total = 0;
-    // let formDataSendInstructions: FormData = new FormData();
-    // let formDataSendGeneral: FormData = new FormData();
-    // let x: number = 1;
     let formDataSend = new FormData();
     // let url: string = "http://localhost:5001";
     let url = "https://potion-editor.herokuapp.com/";
@@ -16,6 +13,8 @@ var L07_Hexenkessel_Database;
         L07_Hexenkessel_Database.generateContent(data);
         let send = document.querySelector("#btnSend");
         send.addEventListener("click", sendRecipe);
+        let btnShow = document.querySelector("#btnShow");
+        btnShow.addEventListener("click", retrieveRecipes);
         let btnGeneral = document.querySelector("#btnGeneral");
         let btnIngredients = document.querySelector("#btnIngredients");
         let btnTemperature = document.querySelector("#btnTemperature");
@@ -41,21 +40,14 @@ var L07_Hexenkessel_Database;
         let intensity = _event.target.value;
         progress.value = parseFloat(intensity);
     }
+    async function retrieveRecipes() {
+        let respone = await fetch(url + "?");
+        let responseText = await respone.text();
+        alert(responseText);
+    }
     async function sendRecipe() {
-        // let outputGeneral: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputGeneral");
         let outputInstructions = document.querySelector("div#outputInstructions");
-        // if (outputGeneral.innerHTML && outputInstructions.innerHTML == "") {
-        //     alert("Professor Snape wird sich nicht freuen, wenn du eine leere Seite abgibst...");
-        // } else {
-        // let querySendGeneral: URLSearchParams = new URLSearchParams(<any>formDataSendGeneral);
-        // let querySendInstructions: URLSearchParams = new URLSearchParams(<any>formDataSendInstructions);
-        // let responseGeneral: Response = await fetch(url + "?" + querySendGeneral.toString());
-        // let responseInstructions: Response = await fetch(url + "?" + querySendInstructions.toString());
-        // let responseGeneralText: string = await responseGeneral.text();
-        // let responseInstructionsText: string = await responseInstructions.text();
-        // alert(responseGeneralText + responseInstructionsText);
         let recipeContent = outputInstructions.innerHTML;
-        recipeContent.replace("<br>", " ");
         formDataSend.append("Rezept", recipeContent);
         let query = new URLSearchParams(formDataSend);
         let response = await fetch(url + "?" + query.toString());
@@ -76,10 +68,7 @@ var L07_Hexenkessel_Database;
         outputGeneral.innerHTML = "...";
         outputInstructions.innerHTML = "";
         totalSpan.innerHTML = "";
-        // formDataSendGeneral = new FormData();
-        // formDataSendInstructions = new FormData();
         formDataSend = new FormData();
-        // x = 1;
     }
     function displayGeneral() {
         let effect = false;
@@ -91,14 +80,12 @@ var L07_Hexenkessel_Database;
                 case "Name":
                     if (entry[1] != "") {
                         outputGeneral.innerHTML += "Trankname: " + entry[1] + "<br>";
-                        // formDataSendGeneral.set(entry[0], entry[1]);
                         formDataSend.set(entry[0], entry[1]);
                     }
                     break;
                 case "Beschreibung":
                     if (entry[1] != "") {
                         outputGeneral.innerHTML += "Beschreibung: " + entry[1] + "<br>";
-                        // formDataSendGeneral.set(entry[0], entry[1]);
                         formDataSend.set(entry[0], entry[1]);
                     }
                     break;
@@ -106,14 +93,12 @@ var L07_Hexenkessel_Database;
                     if (entry[1] != "Unbekannt") {
                         outputGeneral.innerHTML += entry[0] + ": " + entry[1] + "<br>";
                         effect = true;
-                        // formDataSendGeneral.set(entry[0], entry[1]);
                         formDataSend.set(entry[0], entry[1]);
                     }
                     break;
                 case "Wirkungsdauer (Minuten)":
                     if (entry[1] != "0" && effect) {
                         outputGeneral.innerHTML += "Wirkungsdauer: " + entry[1] + " Minute(n)" + "<br>";
-                        // formDataSendGeneral.set(entry[0], entry[1]);
                         formDataSend.set(entry[0], entry[1]);
                     }
                     break;
@@ -134,11 +119,6 @@ var L07_Hexenkessel_Database;
                 let itemprice = Number(item.getAttribute("price"));
                 total += amount * itemprice;
                 outputInstructions.innerHTML += amount + " " + entry[1] + " hinzugeben." + "<br>";
-                // formDataSend.append(x + ". " + entry[0], entry[1]);
-                // formDataSend.append(associatedAmount, amount.toString());
-                // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                // formDataSendInstructions.append(associatedAmount, amount.toString());
-                // x++;
             }
         }
         outputInstructions.innerHTML += "<br>";
@@ -155,33 +135,21 @@ var L07_Hexenkessel_Database;
                     if (entry[1] != "0") {
                         outputInstructions.innerHTML += "Rühren mit einer Intensität von " + entry[1] + "/10." + "<br>";
                         intensity = true;
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
                 case "Rühren bis Dauer (Minuten)":
                     if (entry[1] != "0" && intensity) {
                         outputInstructions.innerHTML += "➔ Rühren bis " + entry[1] + " Minute(n) vergangen sind." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
                 case "Rühren bis Farbe":
                     if (entry[1] != "keine Angabe" && intensity) {
                         outputInstructions.innerHTML += "➔ Rühren bis die Trankfarbe " + entry[1] + " ist." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
                 case "Rühren bis Konsistenz":
                     if (entry[1] != "keine Angabe" && intensity) {
                         outputInstructions.innerHTML += "➔ Rühren bis die Konsistenz " + entry[1] + " ist." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
                 default:
@@ -199,41 +167,26 @@ var L07_Hexenkessel_Database;
                     if (entry[1] != "") {
                         outputInstructions.innerHTML += "Zaubertrank " + entry[1] + "." + "<br>";
                         temperature = true;
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
                 case "Gradzahl (Celsius)":
                     if (entry[1] != "" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis " + entry[1] + " °C erreicht sind." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
                 case "Erhitzen/Abkühlen bis Dauer (Minuten)":
                     if (entry[1] != "0" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis " + entry[1] + " Minute(n) vergangen sind." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
                 case "Erhitzen/Abkühlen bis Farbe":
                     if (entry[1] != "keine Angabe" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis die Trankfarbe " + entry[1] + " ist." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
                 case "Erhitzen/Abkühlen bis Konsistenz":
                     if (entry[1] != "keine Angabe" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis die Konsistenz " + entry[1] + " ist." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
                 default:

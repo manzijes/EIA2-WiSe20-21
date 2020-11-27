@@ -27,6 +27,7 @@ export namespace L07_Hexenkessel_Database {
 
         server.listen(_port);
         server.addListener("request", handleRequest);
+        server.addListener("request", handleRetrieveRecipes);
     }
 
     async function connectToDatabase(_url: string): Promise<void> {
@@ -51,7 +52,14 @@ export namespace L07_Hexenkessel_Database {
 
             storeRecipe(url.query);
         }
+        _response.end();
+    }
 
+    async function handleRetrieveRecipes(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
+        let allRecipes: Mongo.Cursor = recipes.find();
+        let allRecipesString: string[] = await allRecipes.toArray();
+        _response.write(allRecipesString);
+    
         _response.end();
     }
 

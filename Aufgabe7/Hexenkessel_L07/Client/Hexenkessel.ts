@@ -1,10 +1,6 @@
 namespace L07_Hexenkessel_Database {
     window.addEventListener("load", handleLoad);
     let total: number = 0;
-    // let formDataSendInstructions: FormData = new FormData();
-    // let formDataSendGeneral: FormData = new FormData();
-    // let x: number = 1;
-    
     let formDataSend: FormData = new FormData();
     // let url: string = "http://localhost:5001";
     let url: string = "https://potion-editor.herokuapp.com/";
@@ -19,6 +15,9 @@ namespace L07_Hexenkessel_Database {
 
         let send: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnSend");
         send.addEventListener("click", sendRecipe);
+
+        let btnShow: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnShow");
+        btnShow.addEventListener("click", retrieveRecipes);
 
         let btnGeneral: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnGeneral");
         let btnIngredients: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnIngredients");
@@ -51,25 +50,17 @@ namespace L07_Hexenkessel_Database {
         progress.value = parseFloat(intensity);
     }
 
+    async function retrieveRecipes(): Promise<void> {
+        let respone: Response = await fetch(url + "?");
+        let responseText: string = await respone.text();
+        alert (responseText);
+    }
+
     async function sendRecipe(): Promise<void> {
-        // let outputGeneral: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputGeneral");
         let outputInstructions: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputInstructions");
-        
-        // if (outputGeneral.innerHTML && outputInstructions.innerHTML == "") {
-        //     alert("Professor Snape wird sich nicht freuen, wenn du eine leere Seite abgibst...");
-        // } else {
-
-        // let querySendGeneral: URLSearchParams = new URLSearchParams(<any>formDataSendGeneral);
-        // let querySendInstructions: URLSearchParams = new URLSearchParams(<any>formDataSendInstructions);
-        // let responseGeneral: Response = await fetch(url + "?" + querySendGeneral.toString());
-        // let responseInstructions: Response = await fetch(url + "?" + querySendInstructions.toString());
-        // let responseGeneralText: string = await responseGeneral.text();
-        // let responseInstructionsText: string = await responseInstructions.text();
-        // alert(responseGeneralText + responseInstructionsText);
-
         let recipeContent: string = outputInstructions.innerHTML;
-        recipeContent.replace("<br>", " ");
         formDataSend.append("Rezept", recipeContent);
+
         let query: URLSearchParams = new URLSearchParams(<any>formDataSend);
         let response: Response = await fetch(url + "?" + query.toString());
         let responseText: string = await response.text();
@@ -91,12 +82,7 @@ namespace L07_Hexenkessel_Database {
         outputGeneral.innerHTML = "...";
         outputInstructions.innerHTML = "";
         totalSpan.innerHTML = "";
-
-        // formDataSendGeneral = new FormData();
-        // formDataSendInstructions = new FormData();
-
         formDataSend = new FormData();
-        // x = 1;
     }
 
     function displayGeneral(): void {
@@ -104,7 +90,6 @@ namespace L07_Hexenkessel_Database {
         let effect: boolean = false;
         let outputGeneral: HTMLDivElement = <HTMLDivElement>document.querySelector("div#outputGeneral");
         outputGeneral.innerHTML = "";
-
         let formDataGeneral: FormData = new FormData(<HTMLFormElement>document.querySelector("#formGeneral"));
 
         for (let entry of formDataGeneral) {
@@ -113,7 +98,6 @@ namespace L07_Hexenkessel_Database {
                 case "Name":
                     if (entry[1] != "") {
                         outputGeneral.innerHTML += "Trankname: " + entry[1] + "<br>";
-                        // formDataSendGeneral.set(entry[0], entry[1]);
                         formDataSend.set(entry[0], entry[1]);
                     }
                     break;
@@ -121,7 +105,6 @@ namespace L07_Hexenkessel_Database {
                 case "Beschreibung":
                     if (entry[1] != "") {
                         outputGeneral.innerHTML += "Beschreibung: " + entry[1] + "<br>";
-                        // formDataSendGeneral.set(entry[0], entry[1]);
                         formDataSend.set(entry[0], entry[1]);
                     }
                     break;
@@ -130,7 +113,6 @@ namespace L07_Hexenkessel_Database {
                     if (entry[1] != "Unbekannt") {
                         outputGeneral.innerHTML += entry[0] + ": " + entry[1] + "<br>";
                         effect = true;
-                        // formDataSendGeneral.set(entry[0], entry[1]);
                         formDataSend.set(entry[0], entry[1]);
                     }
                     break;
@@ -138,7 +120,6 @@ namespace L07_Hexenkessel_Database {
                 case "Wirkungsdauer (Minuten)":
                     if (entry[1] != "0" && effect) {
                         outputGeneral.innerHTML += "Wirkungsdauer: " + entry[1] + " Minute(n)" + "<br>";
-                        // formDataSendGeneral.set(entry[0], entry[1]);
                         formDataSend.set(entry[0], entry[1]);
                     }
                     break;
@@ -167,13 +148,6 @@ namespace L07_Hexenkessel_Database {
                 total += amount * itemprice;
 
                 outputInstructions.innerHTML += amount + " " + entry[1] + " hinzugeben." + "<br>";
-
-                // formDataSend.append(x + ". " + entry[0], entry[1]);
-                // formDataSend.append(associatedAmount, amount.toString());
-
-                // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                // formDataSendInstructions.append(associatedAmount, amount.toString());
-                // x++;
             }
         }
         outputInstructions.innerHTML += "<br>";
@@ -195,36 +169,24 @@ namespace L07_Hexenkessel_Database {
                     if (entry[1] != "0") {
                         outputInstructions.innerHTML += "Rühren mit einer Intensität von " + entry[1] + "/10." + "<br>";
                         intensity = true;
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
 
                 case "Rühren bis Dauer (Minuten)":
                     if (entry[1] != "0" && intensity) {
                         outputInstructions.innerHTML += "➔ Rühren bis " + entry[1] + " Minute(n) vergangen sind." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
 
                 case "Rühren bis Farbe":
                     if (entry[1] != "keine Angabe" && intensity) {
                         outputInstructions.innerHTML += "➔ Rühren bis die Trankfarbe " + entry[1] + " ist." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
 
                 case "Rühren bis Konsistenz":
                     if (entry[1] != "keine Angabe" && intensity) {
                         outputInstructions.innerHTML += "➔ Rühren bis die Konsistenz " + entry[1] + " ist." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
 
@@ -247,45 +209,30 @@ namespace L07_Hexenkessel_Database {
                     if (entry[1] != "") {
                         outputInstructions.innerHTML += "Zaubertrank " + entry[1] + "." + "<br>";
                         temperature = true;
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
 
                 case "Gradzahl (Celsius)":
                     if (entry[1] != "" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis " + entry[1] + " °C erreicht sind." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
 
                 case "Erhitzen/Abkühlen bis Dauer (Minuten)":
                     if (entry[1] != "0" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis " + entry[1] + " Minute(n) vergangen sind." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
 
                 case "Erhitzen/Abkühlen bis Farbe":
                     if (entry[1] != "keine Angabe" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis die Trankfarbe " + entry[1] + " ist." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
 
                 case "Erhitzen/Abkühlen bis Konsistenz":
                     if (entry[1] != "keine Angabe" && temperature) {
                         outputInstructions.innerHTML += "➔ Befolgen bis die Konsistenz " + entry[1] + " ist." + "<br>";
-                        // formDataSend.append(x + ". " + entry[0], entry[1]);
-                        // formDataSendInstructions.append(x + ". " + entry[0], entry[1]);
-                        // x++;
                     }
                     break;
 

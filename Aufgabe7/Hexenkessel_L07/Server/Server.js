@@ -20,6 +20,7 @@ var L07_Hexenkessel_Database;
         console.log("Server starting on port:" + _port);
         server.listen(_port);
         server.addListener("request", handleRequest);
+        server.addListener("request", handleRetrieveRecipes);
     }
     async function connectToDatabase(_url) {
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -38,6 +39,12 @@ var L07_Hexenkessel_Database;
             _response.write(jsonString);
             storeRecipe(url.query);
         }
+        _response.end();
+    }
+    async function handleRetrieveRecipes(_request, _response) {
+        let allRecipes = recipes.find();
+        let allRecipesString = await allRecipes.toArray();
+        _response.write(allRecipesString);
         _response.end();
     }
     function storeRecipe(_recipe) {
