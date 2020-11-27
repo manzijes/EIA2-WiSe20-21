@@ -39,16 +39,15 @@ var L07_Hexenkessel_Database;
             storeRecipe(url.query);
         }
         else if (window.location.toString().indexOf("command=retrieve") != -1) {
-            console.log("Hallo Welt");
+            handleRetrieveRecipes(_request, _response);
         }
         _response.end();
     }
-    // async function handleRetrieveRecipes(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
-    //     let allRecipes: Mongo.Cursor = recipes.find();
-    //     let allRecipesString: string[] = await allRecipes.toArray();
-    //     _response.write(allRecipesString);
-    //     _response.end();
-    // }
+    async function handleRetrieveRecipes(_request, _response) {
+        let allRecipes = recipes.find();
+        let allRecipesString = await allRecipes.toArray();
+        _response.write(allRecipesString);
+    }
     function storeRecipe(_recipe) {
         recipes.insert(_recipe);
     }
