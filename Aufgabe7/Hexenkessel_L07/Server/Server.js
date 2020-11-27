@@ -42,22 +42,24 @@ var L07_Hexenkessel_Database;
         // }
         if (_request.url) {
             let url = Url.parse(_request.url, true);
-            if (url.query["command"] == "retrieve") {
+            let command = url.query["command"];
+            if (command == "retrieve") {
                 handleRetrieveRecipes(_request, _response);
             }
             else {
                 let jsonString = JSON.stringify(url.query, null, 1);
                 _response.write(jsonString);
                 storeRecipe(url.query);
+                _response.end();
             }
         }
-        _response.end();
     }
     async function handleRetrieveRecipes(_request, _response) {
         console.log("Alert");
         let allRecipes = recipes.find();
         let allRecipesString = await allRecipes.toArray();
         _response.write(allRecipesString);
+        _response.end();
     }
     function storeRecipe(_recipe) {
         recipes.insert(_recipe);
