@@ -41,7 +41,7 @@ var L07_Hexenkessel_Database;
         progress.value = parseFloat(intensity);
     }
     async function retrieveRecipes() {
-        let respone = await fetch(url + "?");
+        let respone = await fetch(url + "?" + "command=retrieve");
         let responseText = await respone.text();
         alert(responseText);
     }

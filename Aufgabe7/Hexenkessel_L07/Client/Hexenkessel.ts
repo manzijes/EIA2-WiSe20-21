@@ -51,7 +51,7 @@ namespace L07_Hexenkessel_Database {
     }
 
     async function retrieveRecipes(): Promise<void> {
-        let respone: Response = await fetch(url + "?");
+        let respone: Response = await fetch(url + "?" + "command=retrieve");
         let responseText: string = await respone.text();
         alert (responseText);
     }
