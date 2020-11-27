@@ -32,14 +32,19 @@ var L07_Hexenkessel_Database;
         console.log("What's up?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
-        if (_request.url) {
+        // if (_request.url) {
+        //     let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+        //     let jsonString: string = JSON.stringify(url.query, null, 1);
+        //     _response.write(jsonString);
+        //     storeRecipe(url.query);
+        if (window.location.toString().indexOf("command=retrieve") != -1) {
+            handleRetrieveRecipes(_request, _response);
+        }
+        else if (_request.url) {
             let url = Url.parse(_request.url, true);
             let jsonString = JSON.stringify(url.query, null, 1);
             _response.write(jsonString);
             storeRecipe(url.query);
-        }
-        else if (window.location.toString().indexOf("command=retrieve") != -1) {
-            handleRetrieveRecipes(_request, _response);
         }
         _response.end();
     }
@@ -48,6 +53,7 @@ var L07_Hexenkessel_Database;
         let allRecipes = recipes.find();
         let allRecipesString = await allRecipes.toArray();
         _response.write(allRecipesString);
+        _response.end();
     }
     function storeRecipe(_recipe) {
         recipes.insert(_recipe);
