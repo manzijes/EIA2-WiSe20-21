@@ -44,41 +44,22 @@ export namespace L07_Hexenkessel_Database {
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
         if (_request.url) {
-
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+
             let jsonString: string = JSON.stringify(url.query, null, 1);
             _response.write(jsonString);
 
             storeRecipe(url.query);
-
-            let query: any = Url.parse(_request.url, true).query;
-            if (query["command"]) {
-                if (query["command"] == "retrieve")
-                handleRetrieveRecipes(query, _response);
-            }
         }
-    }
-
-    //     if (_request.url) {
-    //         let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
-
-    //         let jsonString: string = JSON.stringify(url.query, null, 1);
-    //         _response.write(jsonString);
-
-    //         storeRecipe(url.query);
-    //     }
-    //     _response.end();
-    // }
-
-
-
-    async function handleRetrieveRecipes(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
-        console.log("Alert");
-        let allRecipes: Mongo.Cursor = recipes.find();
-        let allRecipesString: string[] = await allRecipes.toArray();
-        _response.write(allRecipesString);
         _response.end();
     }
+
+    // async function handleRetrieveRecipes(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
+    //     console.log("Alert");
+    //     let allRecipes: Mongo.Cursor = recipes.find();
+    //     let allRecipesString: string[] = await allRecipes.toArray();
+    //     _response.write(allRecipesString);
+    // }
 
     function storeRecipe(_recipe: Recipe): void {
         recipes.insert(_recipe);
