@@ -44,6 +44,7 @@ var L07_Hexenkessel_Database;
         _response.end();
     }
     async function handleRetrieveRecipes(_request, _response) {
+        console.log("Alert");
         let allRecipes = recipes.find();
         let allRecipesString = await allRecipes.toArray();
         _response.write(allRecipesString);
