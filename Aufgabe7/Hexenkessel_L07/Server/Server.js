@@ -45,7 +45,6 @@ var L07_Hexenkessel_Database;
             let command = url.query["command"];
             if (command == "retrieve") {
                 handleRetrieveRecipes(_request, _response);
-                _response.end();
             }
             else {
                 let jsonString = JSON.stringify(url.query, null, 1);
@@ -60,6 +59,7 @@ var L07_Hexenkessel_Database;
         let allRecipes = recipes.find();
         let allRecipesString = await allRecipes.toArray();
         _response.write(allRecipesString);
+        _response.end();
     }
     function storeRecipe(_recipe) {
         recipes.insert(_recipe);
