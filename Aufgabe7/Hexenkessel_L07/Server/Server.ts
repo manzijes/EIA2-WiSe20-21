@@ -60,6 +60,7 @@ export namespace L07_Hexenkessel_Database {
 
             if (command == "retrieve") {
                 handleRetrieveRecipes(_request, _response);
+                _response.end();
             } else {
                 let jsonString: string = JSON.stringify(url.query, null, 1);
                 _response.write(jsonString);
@@ -74,6 +75,7 @@ export namespace L07_Hexenkessel_Database {
         console.log("Alert");
         let allRecipes: Mongo.Cursor = recipes.find();
         let allRecipesString: string[] = await allRecipes.toArray();
+        console.log(allRecipesString);
         _response.write(allRecipesString);
         _response.end();
     }
