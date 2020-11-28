@@ -75,9 +75,7 @@ export namespace L07_Hexenkessel_Database {
         console.log("Alert");
         let allRecipes: Mongo.Cursor = recipes.find();
         let allRecipesString: string[] = await allRecipes.toArray();
-        console.log(allRecipesString);
         _response.write(allRecipesString);
-        _response.end();
     }
 
     function storeRecipe(_recipe: Recipe): void {
