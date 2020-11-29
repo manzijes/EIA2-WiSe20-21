@@ -53,28 +53,36 @@ export namespace L07_Hexenkessel_Database {
         //     }
         //     _response.end();
         // }
-        
+
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             let command: string | string[] | undefined = url.query["command"];
-
+            
             if (command == "retrieve") {
                 handleRetrieveRecipes(_request, _response);
+                _response.end();
             } else {
-                let jsonString: string = JSON.stringify(url.query, null, 1);
-                _response.write(jsonString);
-
-                storeRecipe(url.query);
+                showRecipe(_request, _response);
                 _response.end();
             }
         }
+    }
+
+    function showRecipe(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
+        if (_request.url) {
+            let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+            let jsonString: string = JSON.stringify(url.query, null, 1);
+            _response.write(jsonString);
+            storeRecipe(url.query);
+        }
+        _response.end();
     }
 
     async function handleRetrieveRecipes(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
         console.log("Alert");
         let allRecipes: Mongo.Cursor = recipes.find();
         let allRecipesString: string[] = await allRecipes.toArray();
-        _response.write(allRecipesString);
+        _response.write(allRecipesString + "\n");
         _response.end();
     }
 

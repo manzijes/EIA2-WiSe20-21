@@ -45,20 +45,28 @@ var L07_Hexenkessel_Database;
             let command = url.query["command"];
             if (command == "retrieve") {
                 handleRetrieveRecipes(_request, _response);
+                _response.end();
             }
             else {
-                let jsonString = JSON.stringify(url.query, null, 1);
-                _response.write(jsonString);
-                storeRecipe(url.query);
+                showRecipe(_request, _response);
                 _response.end();
             }
         }
+    }
+    function showRecipe(_request, _response) {
+        if (_request.url) {
+            let url = Url.parse(_request.url, true);
+            let jsonString = JSON.stringify(url.query, null, 1);
+            _response.write(jsonString);
+            storeRecipe(url.query);
+        }
+        _response.end();
     }
     async function handleRetrieveRecipes(_request, _response) {
         console.log("Alert");
         let allRecipes = recipes.find();
         let allRecipesString = await allRecipes.toArray();
-        _response.write(allRecipesString);
+        _response.write(allRecipesString + "\n");
         _response.end();
     }
     function storeRecipe(_recipe) {
