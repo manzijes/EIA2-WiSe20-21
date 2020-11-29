@@ -60,10 +60,8 @@ export namespace L07_Hexenkessel_Database {
             
             if (command == "retrieve") {
                 handleRetrieveRecipes(_request, _response);
-                _response.end();
             } else {
                 showRecipe(_request, _response);
-                _response.end();
             }
         }
     }
