@@ -64,7 +64,12 @@ var L07_Hexenkessel_Database;
         console.log("Alert");
         let allRecipes = recipes.find();
         let allRecipesString = await allRecipes.toArray();
-        _response.write(allRecipesString + "\n");
+        for (let recipe of allRecipesString) {
+            for (let key in Object(recipe)) {
+                _response.write(key + ": " + Object(recipe)[key] + "\n");
+            }
+            _response.write("\n");
+        }
         _response.end();
     }
     function storeRecipe(_recipe) {
