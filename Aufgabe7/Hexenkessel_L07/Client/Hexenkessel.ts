@@ -53,7 +53,7 @@ namespace L07_Hexenkessel_Database {
     async function retrieveRecipes(): Promise<void> {
         let respone: Response = await fetch(url + "?" + "command=retrieve");
         let responseText: string = await respone.text();
-        alert (responseText);
+        alert(responseText.replace(/<br>/g, " "));
     }
 
     async function sendRecipe(): Promise<void> {
@@ -64,7 +64,7 @@ namespace L07_Hexenkessel_Database {
         let query: URLSearchParams = new URLSearchParams(<any>formDataSend);
         let response: Response = await fetch(url + "?" + query.toString());
         let responseText: string = await response.text();
-        alert(responseText);
+        alert(responseText.replace(/<br>/g, " "));
     }
 
     function askBeforeDelete(): void {

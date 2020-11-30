@@ -43,7 +43,7 @@ var L07_Hexenkessel_Database;
     async function retrieveRecipes() {
         let respone = await fetch(url + "?" + "command=retrieve");
         let responseText = await respone.text();
-        alert(responseText);
+        alert(responseText.replace(/<br>/g, " "));
     }
     async function sendRecipe() {
         let outputInstructions = document.querySelector("div#outputInstructions");
@@ -52,7 +52,7 @@ var L07_Hexenkessel_Database;
         let query = new URLSearchParams(formDataSend);
         let response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();
-        alert(responseText);
+        alert(responseText.replace(/<br>/g, " "));
     }
     function askBeforeDelete() {
         let outputGeneral = document.querySelector("div#outputGeneral");
