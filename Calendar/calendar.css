@@ -1,5 +1,5 @@
 body{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Architects Daughter', cursive;
   background-color: #1d3557;
   color: #f1faee;
 }
@@ -29,11 +29,10 @@ body{
   }
 
   h1{
-    font-family: 'Indie Flower', cursive;
     text-align: center;
     padding-bottom: 17px;
     padding-top: 20px;
-    font-size: 22pt;
+    font-size: 18pt;
   }
 
   a{
