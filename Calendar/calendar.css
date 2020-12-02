@@ -1,5 +1,5 @@
 body{
-  font-family: 'Architects Daughter', cursive;
+  font-family: 'Josefin Sans', sans-serif;
   background-color: #1d3557;
   color: #f1faee;
 }
@@ -22,6 +22,7 @@ body{
     font-size: 30px;
     text-align: center;
     font-size: 16pt;
+    font-family: 'Architects Daughter', cursive;
   }
 
   a:hover{
@@ -30,8 +31,8 @@ body{
 
   h1{
     text-align: center;
-    padding-bottom: 17px;
-    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-top: 24px;
     font-size: 18pt;
   }
 
