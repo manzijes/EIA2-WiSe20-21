@@ -32,15 +32,15 @@ div {
 
 
 h1{
-	font-family: 'Petit Formal Script', cursive;
-	font-size: 16pt;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 18pt;
 	margin-bottom: -5px;
 }
 
 h2 {
 	margin-left: 1em;
-	font-size: 12pt;
-	font-family: 'Petit Formal Script', cursive;
+	font-size: 13pt;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 progress {
