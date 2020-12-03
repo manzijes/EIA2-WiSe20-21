@@ -101,6 +101,13 @@ p:not(header){
 	margin-bottom: 10px;
 }
 
+/* #popupBoxOnePosition{
+	top: 0; left: 0; 
+	position: fixed; 
+	width: 50%;
+	background-color: rgba(0,0,0,0.7); display: none;
+} */
+
 /* the following animation was written by @kocsten https://codepen.io/kocsten */
 
 .allBtns {

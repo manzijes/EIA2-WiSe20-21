@@ -44,7 +44,24 @@ var L07_Hexenkessel_Database;
         let respone = await fetch(url + "?" + "command=retrieve");
         let responseText = await respone.text();
         alert(responseText.replace(/<br>/g, " "));
+        // createDiv(responseText);
     }
+    // function createDiv(_responseText: string): void {
+    //     var e: HTMLElement = <HTMLElement>document.getElementById("popupBoxOnePosition");
+    //     var f: HTMLElement = <HTMLElement>document.getElementById("popupBoxContent");
+    //     var g: HTMLButtonElement = <HTMLButtonElement>document.getElementById("btnClose");
+    //     if (e.style.display != "block") {
+    //         e.style.display = "block";
+    //         f.textContent = _responseText.replace(/<br>/g, " ");
+    //         g.addEventListener("click", hideDiv);
+    //     }
+    // }
+    // function hideDiv(): void {
+    //     var e: HTMLElement = <HTMLElement>document.getElementById("popupBoxOnePosition");
+    //     if (e.style.display == "block") {
+    //         e.style.display = "none";
+    //     }
+    // }
     async function sendRecipe() {
         let outputInstructions = document.querySelector("div#outputInstructions");
         let recipeContent = outputInstructions.innerHTML;
