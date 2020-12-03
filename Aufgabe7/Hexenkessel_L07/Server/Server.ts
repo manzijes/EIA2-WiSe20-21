@@ -83,9 +83,9 @@ export namespace L07_Hexenkessel_Database {
 
         for (let recipe of allRecipesString) {
             for (let key in Object(recipe)) {
-                _response.write(key + ": " + Object(recipe)[key] + "br");
+                _response.write(key + ": " + Object(recipe)[key] + "<br>");
             }
-            _response.write("br");
+            _response.write("<br>");
         }
         _response.end();
     }
