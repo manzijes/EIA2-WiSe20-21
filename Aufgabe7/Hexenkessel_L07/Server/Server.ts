@@ -81,16 +81,12 @@ export namespace L07_Hexenkessel_Database {
         let allRecipes: Mongo.Cursor = recipes.find();
         let allRecipesString: string[] = await allRecipes.toArray();
 
-        let jsonString: string = JSON.stringify(allRecipesString, null, 1);
-        jsonString.replace(/<br>/g, " ");
-        _response.write(jsonString + "<br>");
-
-        // for (let recipe of allRecipesString) {
-        //     for (let key in Object(recipe)) {
-        //         _response.write(key + ": " + Object(recipe)[key] + "\n");
-        //     }
-        //     _response.write("\n");
-        // }
+        for (let recipe of allRecipesString) {
+            for (let key in Object(recipe)) {
+                _response.write(key + ": " + Object(recipe)[key] + "\n");
+            }
+            _response.write("\n");
+        }
         _response.end();
     }
 
