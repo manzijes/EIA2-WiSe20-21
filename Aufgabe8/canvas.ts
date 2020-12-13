@@ -25,6 +25,7 @@ namespace L08_Canvas2 {
         humanNumber();
         drawTree({ x: crc22.canvas.width * 0.95, y: crc22.canvas.height * 0.9 });
         drawSnow({ x: crc22.canvas.width * 0.5, y: crc22.canvas.height }, { x: crc22.canvas.width, y: crc22.canvas.height });
+    
     }
 
     function drawBackground(): void {
