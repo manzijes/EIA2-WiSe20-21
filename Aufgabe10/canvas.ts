@@ -1,4 +1,4 @@
-namespace L09_Classes {
+namespace L10_Inheritence {
 
     window.addEventListener("load", handleLoad);
     
@@ -8,18 +8,19 @@ namespace L09_Classes {
     }
 
     export let crc2: CanvasRenderingContext2D;
+    let imgData: ImageData;
     let golden: number = 0.62;
 
-    let snowflakes: Snowflake[] = [];
+    let moveables: Moveable[] = [];
+
     for (let i: number = 1; i < 60; i++) {
-        snowflakes.push(new Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413))));
+        moveables.push(new Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413))));
     }
 
-    let people: Snowboarder[] = [];
     for (let i: number = 1; i < 5; i++) {
         let allColors: string[] = ["lightseagreen", "IndianRed", "darkturquoise", "lightcoral", "palevioletred", "sandybrown"];
         let randomColor: string = allColors[Math.floor(Math.random() * allColors.length)];
-        people.push(new Snowboarder({ x: 870, y: 170 }, { x: 15, y: 20 }, randomColor, (Math.random() * 6) + 1));
+        moveables.push(new Snowboarder({ x: 870, y: 170 }, { x: 15, y: 20 }, randomColor, (Math.random() * 6) + 1));
     }
 
     function handleLoad(_event: Event): void {
@@ -30,29 +31,25 @@ namespace L09_Classes {
 
         drawBackground();
         drawSun({ x: 104.28, y: 82.4 });
-        // drawCloud({ x: 295.46, y: 164.8 }, { x: 86.9, y: 20.6 });
-        // drawCloud({ x: 782.1, y: 103 }, { x: 86.9, y: 20.6 });
+        drawCloud({ x: 295.46, y: 164.8 }, { x: 86.9, y: 20.6 });
+        drawCloud({ x: 782.1, y: 103 }, { x: 86.9, y: 20.6 });
         drawSnowMountain();
         drawHouse({ x: 547, y: 145 }, { x: 152.075, y: 82.4 });
         drawTree({ x: 173.8, y: 267.8 });
         drawLiftLine();
         drawTree({ x: 825.55, y: 370.8 });
+        imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
     }
 
     window.setInterval(update, 20);
 
     function update(): void {
         console.log("Update");
-        drawBackground();
-        drawSun({ x: 104.28, y: 82.4 });
-        drawSnowMountain();
-        drawHouse({ x: 547, y: 145 }, { x: 152.075, y: 82.4 });
-        drawTree({ x: 173.8, y: 267.8 });
-        drawLiftLine();
-        drawTree({ x: 825.55, y: 370.8 });
+        crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+        crc2.putImageData(imgData, 0, 0);
 
-        for (let snowflake of snowflakes) {
-            snowflake.update();
+        for (let moveable of moveables) {
+            moveable.update();
         }
     }
 
@@ -83,30 +80,30 @@ namespace L09_Classes {
         crc2.restore();
     }
 
-    // function drawCloud(_position: Vector, _size: Vector): void {
-    //     let nParticles: number = 15;
-    //     let radiusParticle: number = 35;
-    //     let particle: Path2D = new Path2D();
-    //     let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
+    function drawCloud(_position: Vector, _size: Vector): void {
+        let nParticles: number = 15;
+        let radiusParticle: number = 35;
+        let particle: Path2D = new Path2D();
+        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
 
-    //     particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-    //     gradient.addColorStop(0, "HSLA(0, 100%, 100%, 0.9)");
-    //     gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
+        particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
+        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 0.9)");
+        gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
 
-    //     crc2.save();
-    //     crc2.translate(_position.x, _position.y);
-    //     crc2.fillStyle = gradient;
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        crc2.fillStyle = gradient;
 
-    //     for (let drawn: number = 0; drawn < nParticles; drawn++) {
-    //         crc2.save();
-    //         let x: number = (Math.random() - 0.5) * _size.x;
-    //         let y: number = - (Math.random() * _size.y);
-    //         crc2.translate(x, y);
-    //         crc2.fill(particle);
-    //         crc2.restore();
-    //     }
-    //     crc2.restore();
-    // }
+        for (let drawn: number = 0; drawn < nParticles; drawn++) {
+            crc2.save();
+            let x: number = (Math.random() - 0.5) * _size.x;
+            let y: number = - (Math.random() * _size.y);
+            crc2.translate(x, y);
+            crc2.fill(particle);
+            crc2.restore();
+        }
+        crc2.restore();
+    }
 
     function drawTree(_position: Vector): void {
         crc2.fillStyle = "HSL(10.25,25.81%,40.47%)";

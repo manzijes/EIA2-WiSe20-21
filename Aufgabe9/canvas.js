@@ -41,9 +41,6 @@ var L09_Classes;
         for (let snowflake of snowflakes) {
             snowflake.update();
         }
-        for (let person of people) {
-            person.update();
-        }
     }
     function drawBackground() {
         console.log("Background");
