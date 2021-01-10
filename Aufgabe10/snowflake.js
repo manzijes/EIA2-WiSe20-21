@@ -1,8 +1,9 @@
 "use strict";
 var L10_Inheritence;
 (function (L10_Inheritence) {
-    class Snowflake {
+    class Snowflake extends L10_Inheritence.Moveable {
         constructor(x, y) {
+            super();
             this.x = x;
             this.y = y;
         }

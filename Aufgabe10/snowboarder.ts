@@ -1,13 +1,12 @@
 namespace L10_Inheritence {
-    export class Snowboarder {
+    export class Snowboarder extends Moveable {
         position: Vector;
         size: Vector;
         color: string;
         velocity: number;
-        public x: number;
-        public y: number;
     
         constructor (_position: Vector, _size: Vector, _color: string, _velocity: number) {
+            super();
             this.position = _position;
             this.size = _size;
             this.color = _color;

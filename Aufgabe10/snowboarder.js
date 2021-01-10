@@ -1,8 +1,9 @@
 "use strict";
 var L10_Inheritence;
 (function (L10_Inheritence) {
-    class Snowboarder {
+    class Snowboarder extends L10_Inheritence.Moveable {
         constructor(_position, _size, _color, _velocity) {
+            super();
             this.position = _position;
             this.size = _size;
             this.color = _color;

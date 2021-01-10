@@ -1,9 +1,8 @@
 namespace L10_Inheritence {
-    export class Snowflake {
-        public x: number;
-        public y: number;
+    export class Snowflake extends Moveable {
     
         constructor (x: number, y: number) {
+            super();
             this.x = x;
             this.y = y;
         }

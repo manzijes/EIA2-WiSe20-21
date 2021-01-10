@@ -14,7 +14,9 @@ namespace L10_Inheritence {
     let moveables: Moveable[] = [];
 
     for (let i: number = 1; i < 60; i++) {
-        moveables.push(new Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413))));
+        // moveables.push(new Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413))));
+        let snowflake: Snowflake = new Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413)));
+        moveables.push(snowflake);
     }
 
     for (let i: number = 1; i < 5; i++) {
@@ -39,20 +41,41 @@ namespace L10_Inheritence {
         drawLiftLine();
         drawTree({ x: 825.55, y: 370.8 });
         imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
+
+        update();
     }
 
-    window.setInterval(update, 20);
+    
+
+    // function update(): void {
+    //     console.log("Update");
+    //     crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+    //     crc2.putImageData(imgData, 0, 0);
+
+    //     for (let moveable of moveables) {
+    //         moveable.update();
+    //     }
+    // }
 
     function update(): void {
-        console.log("Update");
+        window.setTimeout(update, 10);
         crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
         crc2.putImageData(imgData, 0, 0);
+        updateMove();
+        drawMoveables();
+    }
 
-        for (let moveable of moveables) {
-            moveable.update();
+    function updateMove(): void {
+        for (let i: number = 0; i < moveables.length; i++) {
+            moveables[i].update();
         }
     }
 
+    function drawMoveables(): void {
+        for (let i: number = 0; i < moveables.length; i++) {
+            moveables[i].draw();
+        }
+    }
 
     function drawBackground(): void {
         console.log("Background");

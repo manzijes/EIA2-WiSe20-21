@@ -6,7 +6,9 @@ var L10_Inheritence;
     let golden = 0.62;
     let moveables = [];
     for (let i = 1; i < 60; i++) {
-        moveables.push(new L10_Inheritence.Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413))));
+        // moveables.push(new Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413))));
+        let snowflake = new L10_Inheritence.Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413)));
+        moveables.push(snowflake);
     }
     for (let i = 1; i < 5; i++) {
         let allColors = ["lightseagreen", "IndianRed", "darkturquoise", "lightcoral", "palevioletred", "sandybrown"];
@@ -28,14 +30,31 @@ var L10_Inheritence;
         drawLiftLine();
         drawTree({ x: 825.55, y: 370.8 });
         imgData = L10_Inheritence.crc2.getImageData(0, 0, canvas.width, canvas.height);
+        update();
     }
-    window.setInterval(update, 20);
+    // function update(): void {
+    //     console.log("Update");
+    //     crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+    //     crc2.putImageData(imgData, 0, 0);
+    //     for (let moveable of moveables) {
+    //         moveable.update();
+    //     }
+    // }
     function update() {
-        console.log("Update");
+        window.setTimeout(update, 10);
         L10_Inheritence.crc2.clearRect(0, 0, L10_Inheritence.crc2.canvas.width, L10_Inheritence.crc2.canvas.height);
         L10_Inheritence.crc2.putImageData(imgData, 0, 0);
-        for (let moveable of moveables) {
-            moveable.update();
+        updateMove();
+        drawMoveables();
+    }
+    function updateMove() {
+        for (let i = 0; i < moveables.length; i++) {
+            moveables[i].update();
+        }
+    }
+    function drawMoveables() {
+        for (let i = 0; i < moveables.length; i++) {
+            moveables[i].draw();
         }
     }
     function drawBackground() {
