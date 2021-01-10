@@ -45,18 +45,6 @@ namespace L10_Inheritence {
         update();
     }
 
-    
-
-    // function update(): void {
-    //     console.log("Update");
-    //     crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-    //     crc2.putImageData(imgData, 0, 0);
-
-    //     for (let moveable of moveables) {
-    //         moveable.update();
-    //     }
-    // }
-
     function update(): void {
         window.setTimeout(update, 10);
         crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);

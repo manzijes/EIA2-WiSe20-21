@@ -32,14 +32,6 @@ var L10_Inheritence;
         imgData = L10_Inheritence.crc2.getImageData(0, 0, canvas.width, canvas.height);
         update();
     }
-    // function update(): void {
-    //     console.log("Update");
-    //     crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-    //     crc2.putImageData(imgData, 0, 0);
-    //     for (let moveable of moveables) {
-    //         moveable.update();
-    //     }
-    // }
     function update() {
         window.setTimeout(update, 10);
         L10_Inheritence.crc2.clearRect(0, 0, L10_Inheritence.crc2.canvas.width, L10_Inheritence.crc2.canvas.height);
