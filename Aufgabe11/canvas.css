@@ -1,0 +1,13 @@
+canvas{
+    border:1px solid #000000;
+}
+
+/* Für Smarthphones mit einer width bis zu 869px */
+
+@media only screen and (max-width: 869px) {
+    canvas{
+        width: 100%;
+        height: 100%;
+    }
+}
+

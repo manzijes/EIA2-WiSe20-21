@@ -52,7 +52,7 @@ var L10_Inheritence;
     function drawBackground() {
         console.log("Background");
         let gradient = L10_Inheritence.crc2.createLinearGradient(0, 0, 0, L10_Inheritence.crc2.canvas.height);
-        gradient.addColorStop(0, "lightblue");
+        gradient.addColorStop(0, "cornflowerblue");
         gradient.addColorStop(golden, "skyblue");
         L10_Inheritence.crc2.fillStyle = gradient;
         L10_Inheritence.crc2.fillRect(0, 0, L10_Inheritence.crc2.canvas.width, L10_Inheritence.crc2.canvas.height);

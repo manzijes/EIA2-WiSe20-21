@@ -1,4 +1,4 @@
-namespace L10_Inheritence {
+namespace L11_Advanced {
 
     window.addEventListener("load", handleLoad);
     
@@ -12,8 +12,9 @@ namespace L10_Inheritence {
     let golden: number = 0.62;
 
     let moveables: Moveable[] = [];
+    let people: Snowboarder[] = [];
 
-    for (let i: number = 1; i < 60; i++) {
+    for (let i: number = 1; i < 40; i++) {
         // moveables.push(new Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413))));
         let snowflake: Snowflake = new Snowflake(Math.floor(Math.random() * (870)), Math.floor(Math.random() * (413)));
         moveables.push(snowflake);
@@ -22,7 +23,9 @@ namespace L10_Inheritence {
     for (let i: number = 1; i < 5; i++) {
         let allColors: string[] = ["lightseagreen", "IndianRed", "darkturquoise", "lightcoral", "palevioletred", "sandybrown"];
         let randomColor: string = allColors[Math.floor(Math.random() * allColors.length)];
-        moveables.push(new Snowboarder({ x: 870, y: 170 }, { x: 15, y: 20 }, randomColor, (Math.random() * 6) + 1));
+        let snowboarder: Snowboarder = new Snowboarder({ x: 870, y: 170 }, { x: 15, y: 20 }, randomColor, (Math.random() * 3) + 1);
+        moveables.push(snowboarder);
+        people.push(snowboarder);
     }
 
     function handleLoad(_event: Event): void {
@@ -30,6 +33,9 @@ namespace L10_Inheritence {
         if (!canvas)
             return;
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
+
+        canvas.addEventListener("click", doSnowInput);
+        canvas.addEventListener("click", jumpSnowboarder);
 
         drawBackground();
         drawSun({ x: 104.28, y: 82.4 });
@@ -41,7 +47,6 @@ namespace L10_Inheritence {
         drawLiftLine();
         drawTree({ x: 825.55, y: 370.8 });
         imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
-
         update();
     }
 
@@ -51,6 +56,8 @@ namespace L10_Inheritence {
         crc2.putImageData(imgData, 0, 0);
         updateMove();
         drawMoveables();
+
+        deleteExpandables();
     }
 
     function updateMove(): void {
@@ -62,6 +69,37 @@ namespace L10_Inheritence {
     function drawMoveables(): void {
         for (let i: number = 0; i < moveables.length; i++) {
             moveables[i].draw();
+        }
+    }
+
+    function jumpSnowboarder(_event: MouseEvent): void {
+        let mousePosition: Vector = {x: _event.clientX - crc2.canvas.offsetLeft, y: _event.clientY - crc2.canvas.offsetTop};
+        for (let oneSnowboarder of people) {
+            if (oneSnowboarder.position.x - oneSnowboarder.hitRadius < mousePosition.x && oneSnowboarder.position.x + oneSnowboarder.hitRadius > mousePosition.x && oneSnowboarder.position.y - oneSnowboarder.hitRadius < mousePosition.y && oneSnowboarder.position.y + oneSnowboarder.hitRadius > mousePosition.y) {
+                oneSnowboarder.position.y -= 50;
+                setTimeout(function(): void { oneSnowboarder.position.y += 50; }, 150);
+                console.log("hallo");
+            }
+        }
+    }
+
+    function deleteExpandables(): void {
+        for (let i: number = moveables.length - 1; i >= 0; i--) {
+            if (moveables[i].expendable)
+                moveables.splice(i, 1);
+        }
+    }
+
+    function doSnowInput(_event: MouseEvent): void {
+        let randomX: number = _event.clientX;
+        let randomY: number = _event.clientY;
+
+        for (let i: number = 0; i < 4; i++) {                     
+            let snowinput: Snowinput = new Snowinput(randomX, randomY);
+            moveables.push(snowinput);
+            randomX += Math.random() * 70;
+            randomX -= Math.random() * 70;
+            randomY += Math.random() * 10;
         }
     }
 
